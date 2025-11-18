@@ -1,0 +1,63 @@
+/* Force sidebar to show all apps expanded */
+.sidebar {
+    overflow-y: auto !important;
+    max-height: 100vh !important;
+}
+
+/* Show all navigation items without collapsing */
+.nav-sidebar .nav-item {
+    display: block !important;
+}
+
+.nav-sidebar .nav-item .nav-link {
+    display: block !important;
+}
+
+/* Ensure all app sections are expanded */
+.nav-sidebar .nav-item.has-treeview .nav-treeview {
+    display: block !important;
+    max-height: none !important;
+}
+
+/* Remove collapse functionality */
+.nav-sidebar .nav-item.has-treeview > .nav-link::after {
+    transform: rotate(90deg) !important;
+}
+
+/* Make sure all items are visible */
+.nav-sidebar .nav-treeview {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+}
+
+/* Ensure proper scrolling */
+.nav-sidebar {
+    overflow-y: auto !important;
+    height: calc(100vh - 60px) !important;
+}
+
+/* Style for better visibility */
+.nav-sidebar .nav-item .nav-link {
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.25rem !important;
+    margin: 0.125rem 0 !important;
+}
+
+.nav-sidebar .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure all models are visible */
+.nav-sidebar .nav-treeview .nav-item {
+    display: block !important;
+    margin-left: 1rem !important;
+}
+
+/* Remove any height restrictions */
+.nav-sidebar .nav-treeview {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}

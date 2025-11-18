@@ -1,0 +1,81 @@
+{% extends "unfold/layouts/base.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<!-- Glammy Custom Styling - Direct Static URLs -->
+<link rel="stylesheet" type="text/css" href="/static/salon/css/glammy_unfold_overrides.css">
+<link rel="stylesheet" type="text/css" href="/static/salon/css/unfold_form_fixes.css">
+<script src="/static/salon/js/glammy_unfold.js" defer></script>
+
+<style>
+/* Inline critical CSS to ensure it loads */
+:root {
+    --glammy-beige: #F3E5D1;
+    --glammy-black: #111111;
+    --glammy-white: #FFFFFF;
+    --glammy-gold: #B49563;
+    --glammy-glitter-gold: #D4AF37;
+    
+    --color-primary-50: #FDF8F3;
+    --color-primary-100: #F3E5D1;
+    --color-primary-200: #E6D2B8;
+    --color-primary-300: #D4B694;
+    --color-primary-400: #C4A573;
+    --color-primary-500: #B49563;
+    --color-primary-600: #A48553;
+    --color-primary-700: #8A724C;
+    --color-primary-800: #6B5A3C;
+    --color-primary-900: #4D3F2A;
+    --color-primary-950: #2D251A;
+}
+
+/* Quick form field fixes */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    background-color: #FAFAFA !important;
+    border: 2px solid #E5E7EB !important;
+    border-radius: 8px !important;
+    color: #111111 !important;
+    font-weight: 500 !important;
+    padding: 12px 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #B49563 !important;
+    box-shadow: 0 0 0 3px rgba(180, 149, 99, 0.2) !important;
+    outline: none !important;
+}
+
+label {
+    color: #111111 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+}
+
+/* Sidebar styling */
+.sidebar {
+    background: linear-gradient(180deg, rgba(180, 149, 99, 0.95) 0%, rgba(138, 114, 76, 0.95) 100%) !important;
+}
+
+.sidebar a {
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+}
+
+.sidebar a:hover {
+    color: #F3E5D1 !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+</style>
+{% endblock %}
+
+{% block title %}{{ title }} | إدارة صالون Glammy{% endblock %}

@@ -1,0 +1,25 @@
+Always ensure the design is fully responsive and looks elegant on all screen sizes — desktop, tablet, and mobile.
+
+Guidelines:
+
+Use flex, grid, or responsive Tailwind utilities (sm:, md:, lg:) to adapt layout to screen width.
+
+Avoid fixed pixel widths; use relative units (%, rem, vw, vh) for scalable components.
+
+Ensure images use object-fit: cover and maintain consistent aspect ratios.
+
+Text and buttons must remain readable and clickable on small screens.
+
+Maintain clean visual hierarchy, generous whitespace, and clear typography (e.g. Inter, Poppins).
+
+No overlapping, clipping, or hidden content at any breakpoint.
+
+Use consistent padding and spacing between sections.
+
+Stick to a minimalist, modern look similar to Apple, Airbnb, or Sephora — no visual clutter.
+
+Check all changes in light and dark themes if applicable.
+
+🎯 Focus on: clarity, balance, scalability, and modern polish — not decoration.
+alwaysApply: true
+---

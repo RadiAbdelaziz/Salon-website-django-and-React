@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تذكير بالموعد - {{ website_name }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #B89F67 0%, #8B4513 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 30px;
+        }
+        .reminder-badge {
+            display: inline-block;
+            background-color: #ffc107;
+            color: #212529;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .booking-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #B89F67;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #495057;
+            min-width: 120px;
+        }
+        .detail-value {
+            color: #212529;
+            text-align: left;
+        }
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            background-color: #B89F67;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #8B4513;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #495057;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .special-requests {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .important-note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>⏰ تذكير بالموعد</h1>
+            <p>{{ website_name }}</p>
+        </div>
+        
+        <div class="content">
+            <div class="reminder-badge">تذكير - موعدك غداً</div>
+            
+            <h2>مرحباً {{ customer_name }}،</h2>
+            <p>نود أن نذكرك بموعدك المحدد غداً في صالوننا. نتطلع لرؤيتك!</p>
+            
+            <div class="booking-details">
+                <div class="detail-row">
+                    <span class="detail-label">رقم الحجز:</span>
+                    <span class="detail-value">#{{ booking_id }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">الخدمة:</span>
+                    <span class="detail-value">{{ service_name }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">التاريخ:</span>
+                    <span class="detail-value">{{ booking_date }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">الوقت:</span>
+                    <span class="detail-value">{{ booking_time }}</span>
+                </div>
+            </div>
+            
+            {% if special_requests and special_requests != 'لا توجد طلبات خاصة' %}
+            <div class="special-requests">
+                <h3>📝 الطلبات الخاصة:</h3>
+                <p>{{ special_requests }}</p>
+            </div>
+            {% endif %}
+            
+            <div class="important-note">
+                <h3>📋 ملاحظات مهمة:</h3>
+                <ul>
+                    <li>يرجى الحضور قبل الموعد بـ 10 دقائق</li>
+                    <li>في حالة عدم القدرة على الحضور، يرجى الاتصال بنا مسبقاً</li>
+                    <li>يمكنك إعادة جدولة الموعد من خلال موقعنا الإلكتروني</li>
+                </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="#" class="btn">تأكيد الحضور</a>
+                <a href="#" class="btn btn-secondary">إعادة جدولة الموعد</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>شكراً لاختيارك {{ website_name }}</p>
+            <p>نتطلع لرؤيتك قريباً!</p>
+        </div>
+    </div>
+</body>
+</html>

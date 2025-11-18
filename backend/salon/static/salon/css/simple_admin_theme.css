@@ -1,0 +1,319 @@
+/* Simple White & Black Admin Theme */
+
+/* Base Colors */
+:root {
+    --primary-white: #FFFFFF;
+    --primary-black: #000000;
+    --light-gray: #F8F9FA;
+    --medium-gray: #6C757D;
+    --dark-gray: #343A40;
+    --border-gray: #DEE2E6;
+}
+
+/* Main Layout */
+body {
+    background-color: var(--primary-white);
+    color: var(--primary-black);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header */
+.unfold-header {
+    background-color: var(--primary-white) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.unfold-header .unfold-header-title {
+    color: var(--primary-black) !important;
+}
+
+/* Sidebar */
+.unfold-sidebar {
+    background-color: var(--light-gray) !important;
+    border-right: 1px solid var(--border-gray) !important;
+}
+
+.unfold-sidebar .unfold-sidebar-item {
+    color: var(--primary-black) !important;
+}
+
+.unfold-sidebar .unfold-sidebar-item:hover {
+    background-color: var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.unfold-sidebar .unfold-sidebar-item.active {
+    background-color: var(--primary-black) !important;
+    color: var(--primary-white) !important;
+}
+
+/* Content Area */
+.unfold-content {
+    background-color: var(--primary-white) !important;
+    color: var(--primary-black) !important;
+}
+
+/* Cards */
+.unfold-card {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.unfold-card-header {
+    background-color: var(--light-gray) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-black) !important;
+    border-color: var(--primary-black) !important;
+    color: var(--primary-white) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-gray) !important;
+    border-color: var(--dark-gray) !important;
+    color: var(--primary-white) !important;
+}
+
+.btn-secondary {
+    background-color: var(--medium-gray) !important;
+    border-color: var(--medium-gray) !important;
+    color: var(--primary-white) !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-gray) !important;
+    border-color: var(--dark-gray) !important;
+    color: var(--primary-white) !important;
+}
+
+/* Forms */
+.form-control {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.form-control:focus {
+    border-color: var(--primary-black) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Tables */
+.table {
+    background-color: var(--primary-white) !important;
+    color: var(--primary-black) !important;
+}
+
+.table thead th {
+    background-color: var(--light-gray) !important;
+    border-bottom: 2px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid var(--border-gray) !important;
+}
+
+.table tbody tr:hover {
+    background-color: var(--light-gray) !important;
+}
+
+/* Navigation */
+.unfold-nav {
+    background-color: var(--primary-white) !important;
+    border-bottom: 1px solid var(--border-gray) !important;
+}
+
+.unfold-nav .unfold-nav-item {
+    color: var(--primary-black) !important;
+}
+
+.unfold-nav .unfold-nav-item:hover {
+    background-color: var(--light-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.unfold-nav .unfold-nav-item.active {
+    background-color: var(--primary-black) !important;
+    color: var(--primary-white) !important;
+}
+
+/* Breadcrumbs */
+.unfold-breadcrumb {
+    background-color: var(--primary-white) !important;
+    color: var(--primary-black) !important;
+}
+
+.unfold-breadcrumb a {
+    color: var(--primary-black) !important;
+}
+
+.unfold-breadcrumb a:hover {
+    color: var(--medium-gray) !important;
+}
+
+/* Alerts */
+.alert-success {
+    background-color: #D4EDDA !important;
+    border-color: #C3E6CB !important;
+    color: #155724 !important;
+}
+
+.alert-danger {
+    background-color: #F8D7DA !important;
+    border-color: #F5C6CB !important;
+    color: #721C24 !important;
+}
+
+.alert-warning {
+    background-color: #FFF3CD !important;
+    border-color: #FFEAA7 !important;
+    color: #856404 !important;
+}
+
+.alert-info {
+    background-color: #D1ECF1 !important;
+    border-color: #BEE5EB !important;
+    color: #0C5460 !important;
+}
+
+/* Pagination */
+.pagination .page-link {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--light-gray) !important;
+    border-color: var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-black) !important;
+    border-color: var(--primary-black) !important;
+    color: var(--primary-white) !important;
+}
+
+/* Search */
+.unfold-search {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+.unfold-search:focus {
+    border-color: var(--primary-black) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Filters */
+.unfold-filter {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+    color: var(--primary-black) !important;
+}
+
+/* Actions */
+.unfold-actions {
+    background-color: var(--light-gray) !important;
+    border-top: 1px solid var(--border-gray) !important;
+}
+
+/* Login Page */
+.unfold-login {
+    background-color: var(--primary-white) !important;
+}
+
+.unfold-login .unfold-login-form {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dashboard */
+.unfold-dashboard {
+    background-color: var(--primary-white) !important;
+}
+
+.unfold-dashboard .unfold-dashboard-widget {
+    background-color: var(--primary-white) !important;
+    border: 1px solid var(--border-gray) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .unfold-sidebar {
+        background-color: var(--primary-white) !important;
+    }
+    
+    .unfold-content {
+        background-color: var(--primary-white) !important;
+    }
+}
+
+/* Dark Mode Override (if needed) */
+@media (prefers-color-scheme: dark) {
+    /* Keep the white and black theme even in dark mode preference */
+    body {
+        background-color: var(--primary-white) !important;
+        color: var(--primary-black) !important;
+    }
+}
+
+/* Remove any existing colorful themes */
+.unfold-theme-glammy,
+.unfold-theme-colorful,
+.unfold-theme-gradient {
+    display: none !important;
+}
+
+/* Ensure clean, minimal appearance */
+* {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* Remove gradients and fancy effects */
+.unfold-header,
+.unfold-sidebar,
+.unfold-content,
+.unfold-card {
+    background-image: none !important;
+    background: var(--primary-white) !important;
+}
+
+/* Simple borders */
+.unfold-card,
+.unfold-sidebar,
+.unfold-header {
+    border: 1px solid var(--border-gray) !important;
+}
+
+/* Clean typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-black) !important;
+    font-weight: 600 !important;
+}
+
+p, span, div {
+    color: var(--primary-black) !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-black) !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: var(--medium-gray) !important;
+    text-decoration: underline !important;
+}

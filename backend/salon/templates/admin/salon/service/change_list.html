@@ -1,0 +1,84 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+/* Additional category-specific styling for services */
+.category-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.category-hair-care .category-indicator {
+    background-color: #8B4513;
+}
+
+.category-skincare .category-indicator {
+    background-color: #FFB6C1;
+}
+
+.category-makeup .category-indicator {
+    background-color: #DDA0DD;
+}
+
+.category-nails .category-indicator {
+    background-color: #FF69B4;
+}
+
+.category-spa .category-indicator {
+    background-color: #20B2AA;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category colors from Django context
+    const categoryColors = {{ category_colors|safe }};
+    
+    // Add category data attributes to table rows
+    const tableRows = document.querySelectorAll('#result_list tbody tr');
+    tableRows.forEach(row => {
+        const categoryCell = row.querySelector('td.field-category');
+        if (categoryCell) {
+            const categoryName = categoryCell.textContent.trim();
+            row.setAttribute('data-category', categoryName);
+            
+            // Set the actual color from database
+            if (categoryColors[categoryName]) {
+                row.setAttribute('data-category-color', categoryColors[categoryName]);
+            }
+            
+            // Add category indicator
+            const categoryText = categoryCell.querySelector('a') || categoryCell;
+            if (categoryText && !categoryText.querySelector('.category-indicator')) {
+                const indicator = document.createElement('span');
+                indicator.className = 'category-indicator';
+                if (categoryColors[categoryName]) {
+                    indicator.style.backgroundColor = categoryColors[categoryName];
+                }
+                categoryText.appendChild(indicator);
+            }
+        }
+    });
+    
+    // Apply category colors
+    if (typeof applyCategoryColors === 'function') {
+        applyCategoryColors();
+    }
+    
+    // Apply dynamic colors from database
+    if (typeof applyDynamicColors === 'function') {
+        applyDynamicColors();
+    }
+});
+</script>
+{% endblock %}

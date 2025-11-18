@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض سعر تسويقي خاص - تكوين سوفت لـ Glammy</title>
+    <link rel="icon" type="image/x-icon" href="سس.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #7B6557;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #F7F3E8 0%, #EDE2CC 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid #e0e0e0;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1, h2, h3, h4 {
+            color: #7B6557;
+            border-bottom: 2px solid #DCC9A7;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #C09052;
+            border-bottom: 3px solid #C09052;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        h2 {
+            color: #8A724C;
+            font-weight: 600;
+        }
+        h3 {
+            color: #B99668;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        .logo-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #F7F3E8 0%, #EDE2CC 100%);
+            border-radius: 12px;
+            border: 2px solid #DCC9A7;
+        }
+        .logo-section img {
+            max-height: 100px;
+            margin: 15px 25px;
+            vertical-align: middle;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .logo-section img:hover {
+            transform: scale(1.05);
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            color: #7B6557;
+            font-weight: 500;
+            background: linear-gradient(135deg, #F7F3E8 0%, #EDE2CC 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #DCC9A7;
+        }
+        .offer-box {
+            border: 2px solid #DCC9A7;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #F7F3E8 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(192, 144, 82, 0.1);
+        }
+        .offer-box:hover {
+            box-shadow: 0 8px 25px rgba(192, 144, 82, 0.2);
+            transform: translateY(-2px);
+            border-color: #C09052;
+        }
+        .offer-box h3 {
+            margin-top: 0;
+            color: #7B6557;
+            border-bottom: 2px solid #DCC9A7;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #C09052;
+            text-align: left;
+            margin-top: 20px;
+            text-shadow: 0 1px 2px rgba(192, 144, 82, 0.2);
+        }
+        .duration {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #7B6557;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px solid #DCC9A7;
+            font-size: 0.9em;
+            color: #7B6557;
+            background: linear-gradient(135deg, #F7F3E8 0%, #EDE2CC 100%);
+            border-radius: 12px;
+            padding: 25px;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        .contact-info a {
+            color: #C09052;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: #8A724C;
+            text-decoration: underline;
+        }
+        ul li {
+            color: #7B6557;
+            line-height: 1.7;
+        }
+        p {
+            color: #7B6557;
+            line-height: 1.7;
+        }
+        strong {
+            color: #7B6557;
+            font-weight: 600;
+        }
+        .special-offer {
+            background: linear-gradient(135deg, #F7F3E8 0%, #EDE2CC 100%);
+            border-left: 5px solid #C09052;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(192, 144, 82, 0.2);
+        }
+        .special-offer p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #8A724C;
+            font-weight: 500;
+        }
+        .special-offer strong {
+            color: #7B6557;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>عرض سعر تسويقي خاص لخدمات تطوير الويب والتطبيقات</h1>
+
+        <div class="logo-section">
+            <h3 style="color: #C09052; margin-bottom: 20px;">شراكة استراتيجية</h3>
+            <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 10px; font-weight: 600; color: #8A724C;"><strong>من:</strong></p>
+                    <img src="1-09.png" alt="شعار تكوين سوفت" style="max-height: 60px;">
+                    <p style="margin-top: 5px; font-size: 0.9em; color: #7B6557;">تكوين سوفت</p>
+                </div>
+                <div style="text-align: center; font-size: 2em; color: #C09052;">&</div>
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 10px; font-weight: 600; color: #8A724C;"><strong>إلى:</strong></p>
+                    <img src="public/logo-05.png" alt="شعار Glammy" style="max-height: 80px;">
+                    <p style="margin-top: 5px; font-size: 0.9em; color: #7B6557;">Glammy</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-info">
+            <p><strong>التاريخ:</strong> 17 سبتمبر 2025</p>
+        </div>
+
+        <h2>مقدمة استثنائية: رؤيتنا لمستقبل Glammy الرقمي</h2>
+        <p>عزيزي العميل في <strong>Glammy</strong>،</p>
+        <p>في عالم اليوم المتسارع، لم يعد مجرد التواجد الرقمي كافيًا. ما يميز العلامات التجارية الرائدة هو امتلاكها لمنصات رقمية متطورة، مصممة خصيصًا لتعكس هويتها الفريدة وتوفر تجربة لا تُنسى لعملائها. بناءً على رؤيتكم الطموحة لمستقبل <strong>Glammy</strong> الرقمي، وتقديمكم لموقعكم الأولي <a href="https://glammy.takweensoft.com/" target="_blank">glammy.takweensoft.com</a>، يسر فريق <strong>تكوين سوفت</strong> أن يقدم لكم عرضًا استثنائيًا يجسد التزامنا بالتميز والابتكار.</p>
+        <p>نحن لا نقدم لكم مجرد موقع؛ بل نقدم لكم <strong>شريكًا رقميًا استراتيجيًا</strong>. نقدم حلاً متكاملاً يجمع بين الأداء الفائق، التصميم الجذاب، وقابلية التوسع اللامحدودة، لضمان ريادة <strong>Glammy</strong> في سوق الجمال والخدمات الفاخرة.</p>
+        <p>نحن ندرك أنكم تسعون إلى منصة قوية تكون أساسًا لنموكم المستقبلي. لذلك، نقدم لكم حلاً <strong>مبنيًا بالكامل من الصفر بأكواد برمجية نظيفة ومبتكرة</strong>، يضمن لكم أداءً لا مثيل له، ومرونة تامة لإضافة أي ميزات مستقبلية قد تحتاجونها، دون قيود القوالب الجاهزة أو الثيمات المحدودة.</p>
+
+        <div class="special-offer">
+            <p>✨ <strong>عرض Glammy الحصري: قيمة استثنائية لتميز لا حدود له!</strong> ✨</p>
+            <p>عادةً، تتجاوز تكلفة تطوير حلول رقمية بهذا المستوى من التخصيص والجودة، والمبنية بالكامل من الصفر بأكواد برمجية حديثة (وليس باستخدام قوالب جاهزة)، مبلغ <strong>20,000 ريال سعودي</strong>. ولكن، بعد مناقشاتنا المثمرة مع <strong>أستاذ جميل</strong>، يسعدنا أن نقدم لكم هذا العرض الاستثنائي بقيمة تقديرية تبدأ من <strong>7,000 ريال سعودي</strong> فقط.</p>
+            <p>هذه فرصة ذهبية للحصول على منصة رقمية متطورة تضع <strong>Glammy</strong> في صدارة المنافسة، مع ضمان أعلى معايير الجودة، الكود النظيف، والتطوير المستقبلي اللامحدود، وبسعر استثنائي يعكس تقديرنا العميق لشراكتكم.</p>
+        </div>
+
+        <h2>العرض الشامل: منصة Glammy الرقمية المتكاملة</h2>
+        <p>هذا العرض يمثل استثمارًا استراتيجيًا في مستقبل <strong>Glammy</strong>، حيث نقدم لكم حلاً رقميًا متكاملاً يغطي جميع احتياجاتكم الحالية والمستقبلية، مع التركيز على الجودة، الأداء، وقابلية التوسع.</p>
+
+        <div class="offer-box">
+            <h3>تطوير منصة Glammy الرقمية المتكاملة (موقع ويب متقدم + واجهة خلفية قوية)</h3>
+            <p>نقدم لكم حلاً متكاملاً يجمع بين واجهة أمامية عصرية وتفاعلية، وواجهة خلفية قوية وموثوقة، مع بنية تحتية مصممة خصيصًا لتلبية أعلى معايير الأداء والأمان.</p>
+            <ul>
+                <li><strong>التقنيات المستخدمة (بناء من الصفر):</strong>
+                    <ul>
+                        <li><strong>الواجهة الأمامية (Frontend):</strong> React.js - لتقديم تجربة مستخدم فائقة السلاسة، تفاعلية، وسريعة الاستجابة على جميع الأجهزة (موقع ويب متقدم).</li>
+                        <li><strong>الواجهة الخلفية (Backend):</strong> Python (باستخدام Django Framework) - لبناء نظام قوي، آمن، وقابل للتوسع لإدارة البيانات ومنطق العمل.</li>
+                    </ul>
+                </li>
+                <li><strong>المميزات الشاملة (تغطي كل شيء وأكثر):</strong>
+                    <ul>
+                        <li><strong>تصميم فريد وتجربة مستخدم استثنائية:</strong>
+                            <ul>
+                                <li>تصميم مخصص يعكس هوية <strong>Glammy</strong> الفاخرة، مع واجهة مستخدم بديهية وجذابة.</li>
+                                <li>تصميم متجاوب بالكامل (Fully Responsive) لضمان أفضل تجربة على الهواتف الذكية، الأجهزة اللوحية، وأجهزة الكمبيوتر.</li>
+                                <li>تحسينات في الأداء وسرعة التحميل لتجربة مستخدم لا مثيل لها.</li>
+                            </ul>
+                        </li>
+                        <li><strong>نظام حجوزات ذكي ومتكامل:</strong>
+                            <ul>
+                                <li>نظام حجوزات متقدم يتيح للعملاء اختيار الخدمات، المتخصصين، التواريخ، والأوقات بسهولة ومرونة.</li>
+                                <li>إدارة جداول المواعيد للمتخصصين، مع إمكانية التعديل والإلغاء.</li>
+                                <li>تأكيدات فورية للحجوزات عبر البريد الإلكتروني/الرسائل النصية.</li>
+                            </ul>
+                        </li>
+                        <li><strong>إدارة شاملة للخدمات والمنتجات:</strong>
+                            <ul>
+                                <li>نظام متكامل لعرض وإدارة خدمات الصالون، الأسعار، العروض الخاصة، والباقات المخصصة.</li>
+                                
+                            </ul>
+                        </li>
+                        <li><strong>تكامل عميق ومحكم مع نظام إدارة علاقات العملاء (CRM):</strong>
+                            <ul>
+                                <li>إدارة شاملة للعملاء، الحجوزات، الخدمات، والمبيعات من خلال واجهة خلفية قوية.</li>
+                                <li>مزامنة فورية ودقيقة لجميع البيانات بين الموقع ونظام CRM لضمان تحديث المعلومات باستمرار.</li>
+                                <li>واجهة برمجة تطبيقات (API) مخصصة، آمنة، وموثوقة لضمان التواصل السلس والفعال.</li>
+                            </ul>
+                        </li>
+                        <li><strong>كود نظيف وقابل للتطوير المستقبلي:</strong>
+                            <ul>
+                                <li>بنية كود نظيفة، منظمة، وموثقة جيدًا، مما يسهل الصيانة والتطوير المستقبلي.</li>
+                                <li>تصميم معماري مرن يضمن سهولة إضافة أي ميزات جديدة، تحديثات، أو تكاملات مع أنظمة أخرى في المستقبل دون الحاجة لإعادة بناء النظام.</li>
+                                <li>قابلية عالية للتوسع (Scalability) للتعامل مع زيادة عدد المستخدمين والخدمات.</li>
+                            </ul>
+                        </li>
+                        <li><strong>دعم متعدد اللغات:</strong> دعم كامل للغتين العربية والإنجليزية.</li>
+                        <li><strong>ميزات إضافية:</strong>
+                            <ul>
+                                <li>نظام تقييم ومراجعات للخدمات والمتخصصين.</li>
+                                <li>معرض أعمال احترافي (Portfolio) للمتخصصين.</li>
+                                <li>صفحات مخصصة (من نحن، عروض خاصة، مدونة، تواصل معنا، أسئلة متكررة).</li>
+                                <li>تحسين محركات البحث (SEO Optimization) الأساسي لزيادة الظهور.</li>
+                                <li>تكامل مع بوابات الدفع الإلكتروني (حسب الاتفاق).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><strong>أساس متين لتطبيق الجوال الأصلي:</strong> يوفر هذا الحل أساسًا تقنيًا قويًا لبناء تطبيق جوال أصلي (Native Mobile App) لأنظمة iOS و Android في المستقبل، بالاعتماد على نفس الواجهة الخلفية (API) المطورة، مما يقلل من تكاليف التطوير المستقبلية.</li>
+            </ul>
+            <p class="price">التكلفة الاستثمارية الشاملة: <strong>7,000 ريال سعودي</strong></p>
+        </div>
+
+        <h2>المدة الزمنية للتنفيذ</h2>
+        <p>نلتزم في <strong>تكوين سوفت</strong> بتقديم مشاريعنا في الوقت المحدد وبأعلى جودة. تتراوح المدة الزمنية المتوقعة لتسليم هذا الحل المتكامل من **30 إلى 45 يوم عمل**.</p>
+        <p><strong>ملاحظة:</strong> تبدأ هذه المدة بعد استلام جميع المتطلبات التفصيلية، المحتوى (نصوص، صور، فيديوهات)، والموافقات اللازمة من جانبكم.</p>
+
+        <h2>ملاحظات هامة وشروط عامة</h2>
+        <ul>
+            <li><strong>الأسعار:</strong> السعر المذكور هو سعر شامل لهذا الحل المتكامل. أي ميزات إضافية غير متفق عليها مسبقًا قد تتطلب تعديلاً في السعر.</li>
+            <li><strong>الدعم الفني:</strong> يشمل العرض دعمًا فنيًا مجانيًا لمدة **ستة اشهر** بعد التسليم النهائي للمشروع، لتغطية أي مشاكل تقنية أو أخطاء برمجية.</li>
+            <li><strong>التكاليف الإضافية:</strong> لا تشمل الأسعار تكاليف الاستضافة السنوية، أسماء النطاقات (Domains)، شهادات SSL، أو أي اشتراكات خارجية خاصة بخدمات الطرف الثالث (مثل بوابات الدفع، خدمات الرسائل القصيرة SMS).</li>
+            <li><strong>الملكية الفكرية:</strong> بعد السداد الكامل، تنتقل جميع حقوق الملكية الفكرية للكود المصدري والتصميمات الخاصة بالمشروع إلى <strong>Glammy</strong>.</li>
+        </ul>
+
+        <div class="footer">
+            <p>نحن على ثقة تامة بأن هذا الحل الرقمي المتكامل سيعزز مكانة <strong>Glammy</strong> ويساهم في تحقيق أهدافكم التجارية. نتطلع إلى مناقشة هذا العرض معكم والإجابة على جميع استفساراتكم لتبدأ رحلة النجاح الرقمي معًا.</p>
+            <p>مع خالص التقدير والتعاون،</p>
+            <p><strong>فريق تكوين سوفت</strong></p>
+            <div class="contact-info">
+                <p><a href="http://takweensoft.com" target="_blank">الموقع الإلكتروني: takweensoft.com</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

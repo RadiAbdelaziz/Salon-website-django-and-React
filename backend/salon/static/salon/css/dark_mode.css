@@ -1,0 +1,1051 @@
+/* Salon Theme CSS Variables and Styling */
+:root {
+  /* Light Mode Colors - Matching Website Theme */
+  --bg-primary: #F8F5EF;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-input: #FAFAFA;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --accent-color: #B89B6E;
+  --accent-hover: #A48553;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.15);
+  
+  /* Salon Theme Colors */
+  --salon-gold: #B89B6E;
+  --salon-cream: #F8F5EF;
+  --warm-brown: #7B6557;
+  --medium-beige: #AD8871;
+  --champagne-veil: #F8E9D5;
+  --ivory-whisper: #F6E1C9;
+  --silken-dune: #DCC9A7;
+}
+
+/* Dark Mode Colors */
+.dark {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-card: #1e1e1e;
+  --bg-input: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e5e5;
+  --text-muted: #a3a3a3;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #D4AF37;
+  --accent-hover: #B89F67;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 0, 0, 0.4);
+}
+
+/* Base Styles - Salon Theme */
+body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Almarai', sans-serif !important;
+}
+
+/* Base Dark Mode Styles */
+.dark body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Admin Interface - Salon Theme */
+/* Main background */
+#container, .main, .content {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Header and navigation */
+#header, .breadcrumbs, .module h2 {
+  background-color: var(--salon-gold) !important;
+  color: white !important;
+}
+
+#header a, .breadcrumbs a {
+  color: white !important;
+}
+
+/* Sidebar */
+#nav-sidebar, #nav-filter {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--silken-dune) !important;
+}
+
+#nav-sidebar a, #nav-filter a {
+  color: var(--warm-brown) !important;
+}
+
+#nav-sidebar a:hover, #nav-filter a:hover {
+  background-color: var(--champagne-veil) !important;
+  color: var(--warm-brown) !important;
+}
+
+/* Selected/Active states */
+#nav-sidebar .selected, #nav-filter .selected,
+#nav-sidebar .active, #nav-filter .active {
+  background-color: var(--salon-gold) !important;
+  color: white !important;
+}
+
+/* Buttons */
+.default, .button, input[type="submit"], input[type="button"] {
+  background-color: var(--salon-gold) !important;
+  color: white !important;
+  border-color: var(--salon-gold) !important;
+}
+
+.default:hover, .button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* Tables */
+#result_list, .results {
+  background-color: var(--bg-secondary) !important;
+}
+
+#result_list th, .results th {
+  background-color: var(--salon-gold) !important;
+  color: white !important;
+  border-color: var(--salon-gold) !important;
+}
+
+#result_list td, .results td {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--silken-dune) !important;
+}
+
+#result_list tr:hover td, .results tr:hover td {
+  background-color: var(--champagne-veil) !important;
+}
+
+/* Forms */
+.form-row, .field-box {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--silken-dune) !important;
+}
+
+input[type="text"], input[type="email"], input[type="password"], 
+input[type="number"], textarea, select {
+  background-color: var(--bg-input) !important;
+  border-color: var(--silken-dune) !important;
+  color: var(--text-primary) !important;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, 
+input[type="number"]:focus, textarea:focus, select:focus {
+  border-color: var(--salon-gold) !important;
+  box-shadow: 0 0 0 2px rgba(184, 155, 110, 0.2) !important;
+}
+
+/* Search and filter */
+#searchbar, .searchbar {
+  background-color: var(--bg-input) !important;
+  border-color: var(--silken-dune) !important;
+}
+
+/* Category-Specific Button Colors */
+/* Service Categories */
+.category-hair-care .default, .category-hair-care .button, 
+.category-hair-care input[type="submit"], .category-hair-care input[type="button"] {
+  background-color: #8B4513 !important; /* Brown for hair care */
+  border-color: #8B4513 !important;
+}
+
+.category-skincare .default, .category-skincare .button, 
+.category-skincare input[type="submit"], .category-skincare input[type="button"] {
+  background-color: #FFB6C1 !important; /* Light pink for skincare */
+  border-color: #FFB6C1 !important;
+  color: #333 !important;
+}
+
+.category-makeup .default, .category-makeup .button, 
+.category-makeup input[type="submit"], .category-makeup input[type="button"] {
+  background-color: #DDA0DD !important; /* Plum for makeup */
+  border-color: #DDA0DD !important;
+}
+
+.category-nails .default, .category-nails .button, 
+.category-nails input[type="submit"], .category-nails input[type="button"] {
+  background-color: #FF69B4 !important; /* Hot pink for nails */
+  border-color: #FF69B4 !important;
+}
+
+.category-spa .default, .category-spa .button, 
+.category-spa input[type="submit"], .category-spa input[type="button"] {
+  background-color: #20B2AA !important; /* Light sea green for spa */
+  border-color: #20B2AA !important;
+}
+
+/* Blog Categories */
+.blog-category-beauty .default, .blog-category-beauty .button, 
+.blog-category-beauty input[type="submit"], .blog-category-beauty input[type="button"] {
+  background-color: #FF1493 !important; /* Deep pink for beauty */
+  border-color: #FF1493 !important;
+}
+
+.blog-category-skincare .default, .blog-category-skincare .button, 
+.blog-category-skincare input[type="submit"], .blog-category-skincare input[type="button"] {
+  background-color: #FFB6C1 !important; /* Light pink for skincare */
+  border-color: #FFB6C1 !important;
+  color: #333 !important;
+}
+
+.blog-category-hair .default, .blog-category-hair .button, 
+.blog-category-hair input[type="submit"], .blog-category-hair input[type="button"] {
+  background-color: #8B4513 !important; /* Brown for hair */
+  border-color: #8B4513 !important;
+}
+
+.blog-category-makeup .default, .blog-category-makeup .button, 
+.blog-category-makeup input[type="submit"], .blog-category-makeup input[type="button"] {
+  background-color: #DDA0DD !important; /* Plum for makeup */
+  border-color: #DDA0DD !important;
+}
+
+.blog-category-lifestyle .default, .blog-category-lifestyle .button, 
+.blog-category-lifestyle input[type="submit"], .blog-category-lifestyle input[type="button"] {
+  background-color: #32CD32 !important; /* Lime green for lifestyle */
+  border-color: #32CD32 !important;
+}
+
+.blog-category-tips .default, .blog-category-tips .button, 
+.blog-category-tips input[type="submit"], .blog-category-tips input[type="button"] {
+  background-color: #FFD700 !important; /* Gold for tips */
+  border-color: #FFD700 !important;
+  color: #333 !important;
+}
+
+/* Dynamic Category Colors - Using data attributes */
+[data-category-color] .default, 
+[data-category-color] .button, 
+[data-category-color] input[type="submit"], 
+[data-category-color] input[type="button"] {
+  background-color: var(--category-color) !important;
+  border-color: var(--category-color) !important;
+}
+
+/* Category-specific table headers */
+.category-hair-care #result_list th, .category-hair-care .results th {
+  background-color: #8B4513 !important;
+}
+
+.category-skincare #result_list th, .category-skincare .results th {
+  background-color: #FFB6C1 !important;
+  color: #333 !important;
+}
+
+.category-makeup #result_list th, .category-makeup .results th {
+  background-color: #DDA0DD !important;
+}
+
+.category-nails #result_list th, .category-nails .results th {
+  background-color: #FF69B4 !important;
+}
+
+.category-spa #result_list th, .category-spa .results th {
+  background-color: #20B2AA !important;
+}
+
+/* Blog category table headers */
+.blog-category-beauty #result_list th, .blog-category-beauty .results th {
+  background-color: #FF1493 !important;
+}
+
+.blog-category-skincare #result_list th, .blog-category-skincare .results th {
+  background-color: #FFB6C1 !important;
+  color: #333 !important;
+}
+
+.blog-category-hair #result_list th, .blog-category-hair .results th {
+  background-color: #8B4513 !important;
+}
+
+.blog-category-makeup #result_list th, .blog-category-makeup .results th {
+  background-color: #DDA0DD !important;
+}
+
+.blog-category-lifestyle #result_list th, .blog-category-lifestyle .results th {
+  background-color: #32CD32 !important;
+}
+
+.blog-category-tips #result_list th, .blog-category-tips .results th {
+  background-color: #FFD700 !important;
+  color: #333 !important;
+}
+
+/* Admin Cards */
+.dark .admin-card {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 8px 24px var(--shadow) !important;
+}
+
+.dark .admin-card:hover {
+  box-shadow: 0 12px 28px var(--shadow-hover) !important;
+}
+
+.dark .admin-card.accent {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Text Colors */
+.dark .stat-title {
+  color: var(--text-secondary) !important;
+}
+
+.dark .admin-card.accent .stat-title {
+  color: var(--text-primary) !important;
+}
+
+.dark .stat-value {
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-card.accent .stat-value {
+  color: var(--text-primary) !important;
+}
+
+.dark .stat-note {
+  color: var(--text-muted) !important;
+}
+
+.dark .admin-card.accent .stat-note {
+  color: var(--text-primary) !important;
+  opacity: 0.9 !important;
+}
+
+/* Links */
+.dark .admin-link {
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-card.accent .admin-link {
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-link:hover {
+  opacity: 0.8 !important;
+}
+
+/* Topbar and Sidebar */
+.dark .topbar-bg {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .sidebar-bg {
+  background: linear-gradient(180deg, var(--accent-color) 0%, var(--accent-hover) 100%) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Tables */
+.dark .table-head-bg {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .table-row-alt {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark table {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark th {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark td {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark tr:nth-child(even) td {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* Form Elements */
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="number"],
+.dark textarea,
+.dark select {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+}
+
+.dark label {
+  color: var(--text-primary) !important;
+}
+
+/* Buttons */
+.dark button,
+.dark .btn,
+.dark input[type="submit"] {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--accent-color) !important;
+}
+
+.dark button:hover,
+.dark .btn:hover,
+.dark input[type="submit"]:hover {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* Export Buttons */
+.dark .export-btn {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--accent-color) !important;
+}
+
+.dark .export-btn:hover {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+.dark .export-btn.excel {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+.dark .export-btn.excel:hover {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+.dark .export-btn.revenue {
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+.dark .export-btn.revenue:hover {
+  background-color: #d97706 !important;
+  border-color: #d97706 !important;
+}
+
+/* Filters */
+.dark #changelist-filter,
+.dark .changelist-filter,
+.dark .change-list .filters,
+.dark [data-component="filters"] {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark #changelist-filter .bg-white,
+.dark .changelist-filter .bg-white,
+.dark .change-list .filters .bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.dark #changelist-filter h3,
+.dark .changelist-filter h2,
+.dark .changelist-filter h3,
+.dark .change-list .filters h2,
+.dark .change-list .filters h3 {
+  color: var(--accent-color) !important;
+}
+
+.dark #changelist-filter ul,
+.dark .changelist-filter ul,
+.dark .change-list .filters ul {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark #changelist-filter li a,
+.dark .changelist-filter li a,
+.dark .change-list .filters li a {
+  color: var(--text-primary) !important;
+  border-color: var(--accent-color) !important;
+  background-color: transparent !important;
+}
+
+.dark #changelist-filter li a:hover,
+.dark .changelist-filter li a:hover,
+.dark .change-list .filters li a:hover {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark #changelist-filter li.font-semibold a,
+.dark .changelist-filter li.selected a,
+.dark .change-list .filters li.selected a {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Search Bar */
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full:focus-within {
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 8px 24px var(--shadow), 0 0 0 2px rgba(212, 175, 55, 0.2) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button span {
+  color: var(--text-primary) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full input {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full kbd {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Navigation and Breadcrumbs */
+.dark .breadcrumb {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .breadcrumb a {
+  color: var(--accent-color) !important;
+}
+
+.dark .breadcrumb a:hover {
+  color: var(--accent-hover) !important;
+}
+
+/* Pagination */
+.dark .pagination {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .pagination a {
+  color: var(--accent-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .pagination a:hover {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .pagination .current {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Messages and Alerts */
+.dark .messages {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .messages .success {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+  color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+.dark .messages .error {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
+}
+
+.dark .messages .warning {
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+.dark .messages .info {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Sidebar Navigation - Comprehensive Dark Mode Support */
+.dark .sidebar,
+.dark [data-component="sidebar"],
+.dark .unfold-sidebar,
+.dark .bg-white,
+.dark .bg-base-50,
+.dark .bg-base-100 {
+  background: linear-gradient(180deg, var(--bg-secondary, #1e1e1e) 0%, var(--bg-primary, #121212) 100%) !important;
+  border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+}
+
+.dark .sidebar a,
+.dark [data-component="sidebar"] a,
+.dark .unfold-sidebar a,
+.dark .sidebar .text-base-600,
+.dark .sidebar .text-base-700,
+.dark .sidebar .text-base-800,
+.dark .sidebar .text-base-900 {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+.dark .sidebar a:hover,
+.dark [data-component="sidebar"] a:hover,
+.dark .unfold-sidebar a:hover {
+  color: var(--text-primary, #ffffff) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .sidebar .active,
+.dark .sidebar .selected,
+.dark [data-component="sidebar"] .active,
+.dark [data-component="sidebar"] .selected {
+  background-color: var(--accent-color, #D4AF37) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Sidebar Search Bar */
+.dark .sidebar input[type="search"],
+.dark .sidebar input[type="text"],
+.dark [data-component="sidebar"] input[type="search"],
+.dark [data-component="sidebar"] input[type="text"] {
+  background-color: var(--bg-input, #2a2a2a) !important;
+  border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+.dark .sidebar input[type="search"]::placeholder,
+.dark .sidebar input[type="text"]::placeholder,
+.dark [data-component="sidebar"] input[type="search"]::placeholder,
+.dark [data-component="sidebar"] input[type="text"]::placeholder {
+  color: var(--text-muted, #a3a3a3) !important;
+}
+
+/* Sidebar Menu Items */
+.dark .sidebar .menu-item,
+.dark .sidebar .nav-item,
+.dark [data-component="sidebar"] .menu-item,
+.dark [data-component="sidebar"] .nav-item {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+.dark .sidebar .menu-item:hover,
+.dark .sidebar .nav-item:hover,
+.dark [data-component="sidebar"] .menu-item:hover,
+.dark [data-component="sidebar"] .nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Sidebar Icons */
+.dark .sidebar .icon,
+.dark .sidebar svg,
+.dark [data-component="sidebar"] .icon,
+.dark [data-component="sidebar"] svg {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Sidebar Brand/Logo */
+.dark .sidebar .brand,
+.dark .sidebar .logo,
+.dark [data-component="sidebar"] .brand,
+.dark [data-component="sidebar"] .logo {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Sidebar Scrollbar */
+.dark .sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dark .sidebar::-webkit-scrollbar-track {
+  background-color: var(--bg-primary, #121212) !important;
+}
+
+.dark .sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color, #D4AF37) !important;
+  border-radius: 3px;
+}
+
+.dark .sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-hover, #B89F67) !important;
+}
+
+/* Unfold Admin Theme Specific Sidebar Styling */
+.dark .unfold-sidebar,
+.dark [data-component="sidebar"],
+.dark .bg-white,
+.dark .bg-base-50,
+.dark .bg-base-100,
+.dark .bg-base-200 {
+  background: linear-gradient(180deg, var(--bg-secondary, #1e1e1e) 0%, var(--bg-primary, #121212) 100%) !important;
+  border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+}
+
+/* Unfold Sidebar Navigation Links - Force White Text */
+.dark .unfold-sidebar a,
+.dark [data-component="sidebar"] a,
+.dark .unfold-sidebar .text-base-600,
+.dark .unfold-sidebar .text-base-700,
+.dark .unfold-sidebar .text-base-800,
+.dark .unfold-sidebar .text-base-900,
+.dark [data-component="sidebar"] .text-base-600,
+.dark [data-component="sidebar"] .text-base-700,
+.dark [data-component="sidebar"] .text-base-800,
+.dark [data-component="sidebar"] .text-base-900,
+.dark .unfold-sidebar *,
+.dark [data-component="sidebar"] *,
+.dark .unfold-sidebar span,
+.dark [data-component="sidebar"] span,
+.dark .unfold-sidebar div,
+.dark [data-component="sidebar"] div,
+.dark .unfold-sidebar p,
+.dark [data-component="sidebar"] p {
+  color: #ffffff !important;
+}
+
+.dark .unfold-sidebar a:hover,
+.dark [data-component="sidebar"] a:hover {
+  color: var(--text-primary, #ffffff) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Unfold Sidebar Active/Selected States */
+.dark .unfold-sidebar .active,
+.dark .unfold-sidebar .selected,
+.dark [data-component="sidebar"] .active,
+.dark [data-component="sidebar"] .selected,
+.dark .unfold-sidebar .bg-primary-50,
+.dark .unfold-sidebar .bg-primary-100 {
+  background-color: var(--accent-color, #D4AF37) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Unfold Sidebar Search */
+.dark .unfold-sidebar input,
+.dark [data-component="sidebar"] input,
+.dark .unfold-sidebar .search-input,
+.dark [data-component="sidebar"] .search-input {
+  background-color: var(--bg-input, #2a2a2a) !important;
+  border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+.dark .unfold-sidebar input::placeholder,
+.dark [data-component="sidebar"] input::placeholder {
+  color: var(--text-muted, #a3a3a3) !important;
+}
+
+/* Unfold Sidebar Icons and SVG */
+.dark .unfold-sidebar svg,
+.dark .unfold-sidebar .icon,
+.dark [data-component="sidebar"] svg,
+.dark [data-component="sidebar"] .icon {
+  color: var(--text-primary, #ffffff) !important;
+  fill: var(--text-primary, #ffffff) !important;
+}
+
+/* Unfold Sidebar Brand/Logo */
+.dark .unfold-sidebar .brand,
+.dark .unfold-sidebar .logo,
+.dark [data-component="sidebar"] .brand,
+.dark [data-component="sidebar"] .logo {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Unfold Sidebar Menu Groups */
+.dark .unfold-sidebar .menu-group,
+.dark [data-component="sidebar"] .menu-group {
+  border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+}
+
+.dark .unfold-sidebar .menu-group-title,
+.dark [data-component="sidebar"] .menu-group-title {
+  color: var(--text-secondary, #e5e5e5) !important;
+}
+
+/* Unfold Sidebar Menu Items */
+.dark .unfold-sidebar .menu-item,
+.dark [data-component="sidebar"] .menu-item {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+.dark .unfold-sidebar .menu-item:hover,
+.dark [data-component="sidebar"] .menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Unfold Sidebar Submenu */
+.dark .unfold-sidebar .submenu,
+.dark [data-component="sidebar"] .submenu {
+  background-color: var(--bg-primary, #121212) !important;
+  border-color: var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+}
+
+.dark .unfold-sidebar .submenu-item,
+.dark [data-component="sidebar"] .submenu-item {
+  color: var(--text-primary, #ffffff) !important;
+}
+
+.dark .unfold-sidebar .submenu-item:hover,
+.dark [data-component="sidebar"] .submenu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--text-primary, #ffffff) !important;
+}
+
+/* Force White Text for All Sidebar Elements */
+.dark .unfold-sidebar,
+.dark [data-component="sidebar"],
+.dark .bg-white,
+.dark .bg-base-50,
+.dark .bg-base-100,
+.dark .bg-base-200 {
+  color: #ffffff !important;
+}
+
+.dark .unfold-sidebar *,
+.dark [data-component="sidebar"] *,
+.dark .bg-white *,
+.dark .bg-base-50 *,
+.dark .bg-base-100 *,
+.dark .bg-base-200 * {
+  color: #ffffff !important;
+}
+
+/* Override any text color classes in sidebar */
+.dark .unfold-sidebar .text-black,
+.dark .unfold-sidebar .text-gray-900,
+.dark .unfold-sidebar .text-gray-800,
+.dark .unfold-sidebar .text-gray-700,
+.dark .unfold-sidebar .text-gray-600,
+.dark [data-component="sidebar"] .text-black,
+.dark [data-component="sidebar"] .text-gray-900,
+.dark [data-component="sidebar"] .text-gray-800,
+.dark [data-component="sidebar"] .text-gray-700,
+.dark [data-component="sidebar"] .text-gray-600 {
+  color: #ffffff !important;
+}
+
+/* Force white text for specific Arabic text elements */
+.dark .unfold-sidebar [dir="rtl"],
+.dark [data-component="sidebar"] [dir="rtl"],
+.dark .unfold-sidebar .rtl,
+.dark [data-component="sidebar"] .rtl {
+  color: #ffffff !important;
+}
+
+/* Modal and Overlay */
+.dark .modal {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .modal-header {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .modal-body {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .modal-footer {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Tooltips */
+.dark .tooltip {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Dropdown Menus */
+.dark .dropdown-menu {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .dropdown-item {
+  color: var(--text-primary) !important;
+}
+
+.dark .dropdown-item:hover {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Checkboxes and Radio Buttons */
+.dark input[type="checkbox"],
+.dark input[type="radio"] {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark input[type="checkbox"]:checked,
+.dark input[type="radio"]:checked {
+  background-color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* File Input */
+.dark input[type="file"] {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Date and Time Inputs */
+.dark input[type="date"],
+.dark input[type="time"],
+.dark input[type="datetime-local"] {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Range Input */
+.dark input[type="range"] {
+  background-color: var(--bg-input) !important;
+}
+
+.dark input[type="range"]::-webkit-slider-thumb {
+  background-color: var(--accent-color) !important;
+}
+
+.dark input[type="range"]::-moz-range-thumb {
+  background-color: var(--accent-color) !important;
+}
+
+/* Progress Bars */
+.dark .progress {
+  background-color: var(--bg-input) !important;
+}
+
+.dark .progress-bar {
+  background-color: var(--accent-color) !important;
+}
+
+/* Badges and Tags */
+.dark .badge,
+.dark .tag {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Code Blocks */
+.dark code,
+.dark pre {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Blockquotes */
+.dark blockquote {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Horizontal Rules */
+.dark hr {
+  border-color: var(--border-color) !important;
+}
+
+/* Focus States */
+.dark *:focus {
+  outline-color: var(--accent-color) !important;
+}
+
+/* Selection */
+.dark ::selection {
+  background-color: var(--accent-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Scrollbar */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color) !important;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-hover) !important;
+}
+
+/* Firefox Scrollbar */
+.dark {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-color) var(--bg-secondary);
+}
+
+/* Print Styles */
+@media print {
+  .dark {
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-input: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #000000;
+    --text-muted: #000000;
+    --border-color: #000000;
+    --accent-color: #000000;
+    --accent-hover: #000000;
+    --shadow: transparent;
+    --shadow-hover: transparent;
+  }
+}

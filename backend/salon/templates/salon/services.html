@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات - صالون Glammy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f6f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .services-header {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .services-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .services-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .services-container {
+            padding: 4rem 0;
+        }
+        
+        .service-category {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-left: 1rem;
+            width: 50px;
+            text-align: center;
+        }
+        
+        .category-title {
+            color: #8b4513;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .service-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .service-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 1.1rem;
+            transition: color 0.3s ease, padding-right 0.3s ease;
+        }
+        
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        
+        .service-item:hover {
+            color: #d4af37;
+            padding-right: 1rem;
+        }
+        
+        .service-item::before {
+            content: "•";
+            color: #d4af37;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+        
+        .view-all-services {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .btn-view-all {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            border: none;
+            color: white;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-view-all:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            color: white;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: #8b4513 !important;
+        }
+        
+        .nav-link {
+            color: #8b4513 !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: #d4af37 !important;
+        }
+        
+        @media (max-width: 768px) {
+            .services-header h1 {
+                font-size: 2rem;
+            }
+            
+            .category-title {
+                font-size: 1.5rem;
+            }
+            
+            .service-category {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-crown me-2"></i>
+                صالون Glammy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/services/">الخدمات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact/">تواصل معنا</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Header -->
+    <div class="services-header">
+        <div class="container">
+            <h1><i class="fas fa-spa me-3"></i>خدماتنا المميزة</h1>
+            <p>اكتشف مجموعة واسعة من الخدمات المتخصصة لجمالك وراحتك</p>
+        </div>
+    </div>
+
+    <!-- Services Content -->
+    <div class="services-container">
+        <div class="container">
+            <div class="row">
+                {% for category in categories %}
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="service-category">
+                        <div class="category-header">
+                            {% if category.icon %}
+                                <div class="category-icon">
+                                    {% if 'fa-' in category.icon %}
+                                        <i class="{{ category.icon }}"></i>
+                                    {% else %}
+                                        {{ category.icon }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <h3 class="category-title">{{ category.name }}</h3>
+                        </div>
+                        <ul class="service-items">
+                            {% for item in category.items.all %}
+                            <li class="service-item">{{ item.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        لا توجد خدمات متاحة حالياً
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="view-all-services">
+                <a href="/booking/" class="btn-view-all">
+                    <i class="fas fa-calendar-alt me-2"></i>
+                    عرض جميع الخدمات
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 صالون Glammy. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

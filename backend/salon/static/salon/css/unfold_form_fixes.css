@@ -1,0 +1,523 @@
+/* 
+ * Additional form fixes specifically for Unfold admin theme
+ * These styles ensure all form fields are clearly visible and accessible
+ */
+
+/* Override Unfold's default form styling */
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="email"],
+[data-theme="light"] input[type="password"],
+[data-theme="light"] input[type="number"],
+[data-theme="light"] input[type="url"],
+[data-theme="light"] input[type="tel"],
+[data-theme="light"] input[type="date"],
+[data-theme="light"] input[type="time"],
+[data-theme="light"] input[type="datetime-local"],
+[data-theme="light"] input[type="search"],
+[data-theme="light"] textarea,
+[data-theme="light"] select,
+.tw-bg-white,
+.tw-border-gray-200,
+.tw-text-gray-900 {
+    background-color: #FAFAFA !important;
+    border: 2px solid #E5E7EB !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    color: #111111 !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Focus states for Unfold theme */
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus,
+.tw-bg-white:focus,
+.tw-border-gray-200:focus {
+    background-color: #FFFFFF !important;
+    border-color: #B49563 !important;
+    box-shadow: 0 0 0 3px rgba(180, 149, 99, 0.2), 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+    outline: none !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Labels in Unfold */
+[data-theme="light"] label,
+.tw-text-gray-700,
+.tw-font-medium {
+    color: #111111 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+    letter-spacing: 0.3px !important;
+}
+
+/* Fieldsets and form groups in Unfold */
+.tw-space-y-4 > div,
+.tw-space-y-6 > div,
+.form-field,
+.field-wrapper {
+    margin-bottom: 20px !important;
+}
+
+/* Unfold specific container styling */
+.tw-bg-gray-50,
+.tw-border,
+.tw-rounded-lg {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #E6D2B8 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    padding: 20px !important;
+}
+
+/* Submit buttons in Unfold */
+.tw-bg-blue-600,
+.tw-bg-primary-600,
+button[type="submit"],
+input[type="submit"] {
+    background: linear-gradient(135deg, #B49563 0%, #D4AF37 100%) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(180, 149, 99, 0.3) !important;
+}
+
+.tw-bg-blue-600:hover,
+.tw-bg-primary-600:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B49563 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(180, 149, 99, 0.4) !important;
+}
+
+/* Error messages in Unfold */
+.tw-text-red-600,
+.tw-border-red-300,
+.error-message {
+    background-color: #FEF2F2 !important;
+    border: 2px solid #F87171 !important;
+    color: #DC2626 !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    margin: 8px 0 !important;
+    font-weight: 600 !important;
+}
+
+/* Help text in Unfold */
+.tw-text-gray-500,
+.tw-text-sm,
+.help-text {
+    background-color: #EEF2FF !important;
+    border: 1px solid #C7D2FE !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    margin-top: 6px !important;
+    font-size: 12px !important;
+    color: #4B5563 !important;
+    font-weight: 500 !important;
+}
+
+/* Tables in Unfold admin */
+.tw-table,
+.unfold-table,
+table {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    margin: 20px 0 !important;
+}
+
+.tw-table thead th,
+.unfold-table thead th,
+table thead th {
+    background: linear-gradient(135deg, #B49563 0%, #C4A573 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    padding: 15px 12px !important;
+    border-bottom: 2px solid #D4AF37 !important;
+    text-align: right !important;
+}
+
+/* Sidebar in Unfold */
+.tw-bg-gray-900,
+.sidebar,
+nav[role="navigation"] {
+    background: linear-gradient(180deg, 
+                rgba(180, 149, 99, 0.95) 0%, 
+                rgba(138, 114, 76, 0.95) 100%) !important;
+    backdrop-filter: blur(15px) !important;
+    border-right: 3px solid #D4AF37 !important;
+}
+
+.tw-text-white,
+.sidebar a,
+nav[role="navigation"] a {
+    color: #FFFFFF !important;
+    font-weight: 600 !important;
+}
+
+.tw-text-white:hover,
+.sidebar a:hover,
+nav[role="navigation"] a:hover {
+    color: #F3E5D1 !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Dark mode support */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: #374151 !important;
+    border: 2px solid #4B5563 !important;
+    color: #F9FAFB !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+    background-color: #1F2937 !important;
+    border-color: #B49563 !important;
+    box-shadow: 0 0 0 3px rgba(180, 149, 99, 0.3) !important;
+}
+
+[data-theme="dark"] label {
+    color: #F9FAFB !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .tw-space-y-4 > div,
+    .tw-space-y-6 > div,
+    .form-field,
+    .field-wrapper {
+        margin-bottom: 15px !important;
+    }
+    
+    [data-theme="light"] input,
+    [data-theme="light"] textarea,
+    [data-theme="light"] select {
+        padding: 10px 14px !important;
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+    
+    .tw-bg-gray-50,
+    .tw-border,
+    .tw-rounded-lg {
+        padding: 15px !important;
+        margin: 10px 0 !important;
+    }
+}
+
+/* ================================
+   SPECIFIC FORM IMPROVEMENTS
+   ================================ */
+
+/* Form container with border-base-200 styling */
+.border-base-200.shadow-xs.aligned.rounded-default.border {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 2px solid #E6D2B8 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    padding: 25px !important;
+    margin: 20px 0 !important;
+}
+
+/* Field rows and form rows */
+.group\/row.field-row.form-row,
+.field-row.form-row {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+    margin-bottom: 0 !important;
+    padding: 20px 0 !important;
+    transition: all 0.2s ease !important;
+}
+
+.group\/row.field-row.form-row:last-child,
+.field-row.form-row.last {
+    border-bottom: none !important;
+    padding-bottom: 15px !important;
+}
+
+.group\/row.field-row.form-row:hover,
+.field-row.form-row:hover {
+    background: rgba(243, 229, 209, 0.3) !important;
+    border-radius: 8px !important;
+    margin: 0 -10px !important;
+    padding: 20px 10px !important;
+}
+
+/* Field line containers */
+.field-line.flex.flex-col,
+.px-3.group.py-2\.5.flex.field-line.flex-col {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Enhanced labels */
+.field-line label,
+label.required {
+    color: #111111 !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+    letter-spacing: 0.3px !important;
+    text-shadow: none !important;
+}
+
+/* Required field asterisk */
+label.required::after {
+    content: " *" !important;
+    color: #DC2626 !important;
+    font-weight: 700 !important;
+    margin-left: 3px !important;
+}
+
+/* Input fields specific styling */
+.vTextField,
+.vLargeTextField,
+input[type="text"],
+textarea,
+select {
+    background-color: #FAFAFA !important;
+    border: 2px solid #E5E7EB !important;
+    border-radius: 10px !important;
+    padding: 14px 18px !important;
+    color: #111111 !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    font-family: 'Inter', 'Segoe UI', sans-serif !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    line-height: 1.5 !important;
+}
+
+/* Focus states */
+.vTextField:focus,
+.vLargeTextField:focus,
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    background-color: #FFFFFF !important;
+    border-color: #B49563 !important;
+    box-shadow: 0 0 0 4px rgba(180, 149, 99, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    outline: none !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Hover states */
+.vTextField:hover:not(:focus),
+.vLargeTextField:hover:not(:focus),
+input[type="text"]:hover:not(:focus),
+textarea:hover:not(:focus),
+select:hover:not(:focus) {
+    border-color: #D1D5DB !important;
+    background-color: #F9FAFB !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Textarea specific */
+.vLargeTextField,
+textarea {
+    min-height: 120px !important;
+    resize: vertical !important;
+    font-family: 'Inter', 'Segoe UI', sans-serif !important;
+    line-height: 1.6 !important;
+}
+
+/* Select dropdown enhancements */
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23B49563' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: left 15px center !important;
+    background-repeat: no-repeat !important;
+    background-size: 18px 18px !important;
+    padding-left: 50px !important;
+    cursor: pointer !important;
+}
+
+/* Related widget wrapper - for ForeignKey fields */
+.related-widget-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.related-widget-wrapper select {
+    flex: 1 !important;
+    margin-left: 0 !important;
+}
+
+/* Related widget links (add, change, view buttons) */
+.related-widget-wrapper-link {
+    background: linear-gradient(135deg, #B49563 0%, #D4AF37 100%) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    text-decoration: none !important;
+}
+
+.related-widget-wrapper-link:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #B49563 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(180, 149, 99, 0.3) !important;
+}
+
+.related-widget-wrapper-link img {
+    width: 20px !important;
+    height: 20px !important;
+    filter: brightness(0) invert(1) !important; /* Make icons white */
+}
+
+/* Disabled state for related links */
+.related-widget-wrapper-link[aria-disabled="true"] {
+    background: #E5E7EB !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+.related-widget-wrapper-link[aria-disabled="true"]:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Field groups styling */
+.field-category,
+.field-name,
+.field-name_en,
+.field-description,
+.field-description_en {
+    position: relative !important;
+}
+
+/* Add subtle visual separation between field groups */
+.field-category::after,
+.field-name::after,
+.field-name_en::after,
+.field-description::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -10px !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent, #E6D2B8 20%, #E6D2B8 80%, transparent) !important;
+}
+
+.field-description_en::after {
+    display: none !important; /* Last field doesn't need separator */
+}
+
+/* Enhanced placeholder styling */
+.vTextField::placeholder,
+.vLargeTextField::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: #9CA3AF !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    opacity: 0.8 !important;
+}
+
+/* Form validation and error states */
+.vTextField.error,
+.vLargeTextField.error,
+input.error,
+textarea.error,
+select.error {
+    border-color: #F87171 !important;
+    background-color: #FEF2F2 !important;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2) !important;
+}
+
+/* Success state for valid fields */
+.vTextField:valid,
+.vLargeTextField:valid,
+input:valid,
+textarea:valid,
+select:valid {
+    border-color: #10B981 !important;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+    .border-base-200.shadow-xs.aligned.rounded-default.border {
+        padding: 20px 15px !important;
+        margin: 15px 0 !important;
+    }
+    
+    .group\/row.field-row.form-row,
+    .field-row.form-row {
+        padding: 15px 0 !important;
+    }
+    
+    .vTextField,
+    .vLargeTextField,
+    input[type="text"],
+    textarea,
+    select {
+        padding: 12px 16px !important;
+        font-size: 16px !important; /* Prevent iOS zoom */
+    }
+    
+    .related-widget-wrapper {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+    }
+    
+    .related-widget-wrapper select {
+        margin-bottom: 8px !important;
+    }
+    
+    .related-widget-wrapper .related-widget-wrapper-link {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    [data-theme="light"] input,
+    [data-theme="light"] textarea,
+    [data-theme="light"] select {
+        background: white !important;
+        border: 1px solid black !important;
+        box-shadow: none !important;
+        color: black !important;
+    }
+    
+    .tw-bg-gray-50,
+    .tw-border,
+    .tw-rounded-lg {
+        background: white !important;
+        border: 1px solid black !important;
+        box-shadow: none !important;
+    }
+    
+    .related-widget-wrapper-link {
+        display: none !important;
+    }
+}

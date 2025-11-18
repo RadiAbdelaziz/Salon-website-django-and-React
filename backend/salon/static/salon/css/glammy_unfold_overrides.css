@@ -1,0 +1,1130 @@
+/* 
+ * Glammy Admin Restyle – Strict palette and typography
+ * Palette: Beige #F8E9D5, Accent #B89F67, Black #000000, Cream #F6E1C9
+ */
+
+/* ================================
+   CSS VARIABLES OVERRIDE
+   ================================ */
+:root {
+    --glammy-beige: #F8E9D5;
+    --glammy-accent: #B89F67;
+    --glammy-black: #000000;
+    --glammy-cream: #F6E1C9;
+
+    /* Typography */
+    --glammy-font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    
+    /* Text color rules - ENFORCED */
+    --text-on-beige: #000000;      /* Black text on #F8E9D5 background */
+    --text-on-accent: #F8E9D5;     /* Beige text on #B89F67 background */
+    --text-on-black: #F8E9D5;      /* Beige text on black background */
+}
+
+/* ================================
+   TEXT COLOR ENFORCEMENT RULES
+   ================================ */
+
+/* Rule 1: Background #F8E9D5 → Text must be BLACK (#000000) */
+*[style*="background-color: #F8E9D5"],
+*[style*="background: #F8E9D5"],
+.bg-beige,
+.bg-light,
+body,
+.main-content,
+.content-wrapper,
+.admin-content {
+    color: var(--text-on-beige) !important;
+}
+
+/* Rule 2: Background #B89F67 → Text must be #F8E9D5 */
+*[style*="background-color: #B89F67"],
+*[style*="background: #B89F67"],
+.bg-accent,
+.bg-gold,
+.accent-background {
+    color: var(--text-on-accent) !important;
+}
+
+/* Rule 3: Background black → Text must be #F8E9D5 */
+*[style*="background-color: #000000"],
+*[style*="background-color: black"],
+*[style*="background: #000000"],
+*[style*="background: black"],
+.bg-black,
+.dark-background {
+    color: var(--text-on-black) !important;
+}
+
+/* Override any other color declarations */
+* {
+    color: inherit !important;
+}
+
+/* Specific overrides for common elements */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, button, input, textarea, select,
+label, th, td, li, ul, ol {
+    color: inherit !important;
+}
+
+/* ================================
+   BACKGROUND IMAGE IMPLEMENTATION
+   ================================ */
+
+/* Login page background */
+.login-page {
+    background: linear-gradient(rgba(243, 229, 209, 0.85), rgba(243, 229, 209, 0.85)), 
+                url('/static/dd.png') center center / cover no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Page background */
+body {
+    background: var(--glammy-beige) !important;
+    color: var(--text-on-beige) !important;
+    font-family: var(--glammy-font-family) !important;
+}
+
+/* Content areas with semi-transparent background */
+.main-content,
+.content-wrapper,
+.admin-content {
+    background-color: rgba(253, 248, 243, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   UNFOLD COMPONENT OVERRIDES
+   ================================ */
+
+/* Sidebar */
+.sidebar,
+.sidebar-wrapper,
+[data-component="sidebar"] {
+    background: var(--glammy-accent) !important;
+    border-right: 0 !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Sidebar text colors */
+.sidebar a,
+.sidebar .nav-link,
+.sidebar .menu-item {
+    color: var(--text-on-accent) !important;
+    font-weight: 700 !important;
+    letter-spacing: .2px;
+    transition: background .15s ease, color .15s ease, transform .1s ease;
+    border-radius: 12px !important;
+    background: rgba(0,0,0,0.08) !important; /* flat pill */
+    padding-block: 12px !important;
+}
+
+.sidebar a:hover,
+.sidebar .nav-link:hover,
+.sidebar .menu-item:hover {
+    background: rgba(0,0,0,0.14) !important;
+    transform: translateY(-1px);
+}
+
+/* Active sidebar items */
+.sidebar .active,
+.sidebar .current,
+.sidebar [aria-current="page"] {
+    background: var(--glammy-black) !important;
+    color: var(--text-on-black) !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18) inset, 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Sidebar section headings */
+.sidebar h2,
+.sidebar .section-title,
+.sidebar [data-role="sidebar-section-title"] {
+    color: var(--text-on-accent) !important;
+    opacity: .9;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    margin: 20px 8px 10px !important;
+}
+
+/* Sidebar search */
+.sidebar input[type="search"],
+.sidebar .search input {
+    background: var(--glammy-beige) !important;
+    border: 2px solid rgba(0,0,0,.12) !important;
+    color: var(--text-on-beige) !important;
+    border-radius: 12px !important;
+}
+.sidebar .search input::placeholder { color: rgba(0,0,0,.45) !important; }
+
+/* Icon color */
+.sidebar .material-icons,
+.sidebar [class*="icon"],
+.sidebar svg { color: var(--text-on-accent) !important; opacity: .95; }
+
+/* Spacing and container padding */
+.sidebar .menu,
+.sidebar nav { padding: 8px 16px 16px !important; }
+
+/* Scrollbar styling */
+.sidebar ::-webkit-scrollbar { width: 8px; }
+.sidebar ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 8px; }
+.sidebar ::-webkit-scrollbar-track { background: transparent; }
+
+/* Top bar */
+.header,
+.top-bar,
+.navbar,
+[data-component="header"] {
+    background: var(--glammy-beige) !important;
+    color: var(--glammy-black) !important;
+    border-bottom: 1px solid rgba(0,0,0,.06) !important;
+}
+
+/* Header text and buttons */
+.header *,
+.top-bar *,
+.navbar * { color: var(--text-on-beige) !important; }
+
+/* Logo area */
+.logo,
+.site-title,
+.brand { 
+    color: var(--text-on-beige) !important; 
+    font-weight: 800; 
+    font-size: 1.5rem; 
+    text-shadow: none !important; 
+}
+
+/* Logo image size - ENLARGED */
+.logo img,
+.site-logo img,
+.brand img,
+[data-component="logo"] img,
+.unfold-logo img,
+header img[src*="logo"] {
+    max-height: 60px !important;
+    height: 60px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    padding: 8px 0 !important;
+}
+
+/* Sidebar logo */
+.sidebar .logo img,
+.sidebar .site-logo img,
+.sidebar img[src*="logo"] {
+    max-height: 80px !important;
+    height: 80px !important;
+    width: auto !important;
+    object-fit: contain !important;
+    padding: 12px !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+/* Header logo container */
+.header .logo,
+.header .brand,
+.top-bar .logo,
+.navbar .logo {
+    height: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 5px 10px !important;
+}
+
+/* Favicon / Site icon */
+link[rel="icon"],
+link[rel="shortcut icon"] {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+/* ================================
+   FORM ELEMENTS & BUTTONS
+   ================================ */
+
+/* Primary buttons (flat) */
+.btn-primary,
+.button-primary {
+    background: var(--glammy-accent) !important;
+    color: var(--text-on-accent) !important;
+    border: none !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
+}
+.btn-primary:hover,
+.button-primary:hover { filter: brightness(0.95); }
+
+/* ================================
+   ENHANCED FORM INPUTS & LABELS
+   ================================ */
+
+/* Form labels - make them bold and darker */
+label,
+.form-label,
+.field-label,
+.control-label,
+th label {
+    color: var(--glammy-black) !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+    display: block !important;
+    letter-spacing: 0.3px !important;
+    text-shadow: none !important;
+}
+
+/* All form input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="search"],
+textarea,
+select,
+.form-control,
+.form-input {
+    /* Background and basic styling */
+    background-color: #FAFAFA !important;
+    background-image: none !important;
+    
+    /* Borders */
+    border: 2px solid #E5E7EB !important;
+    border-radius: 8px !important;
+    
+    /* Spacing and sizing */
+    padding: 12px 16px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    
+    /* Typography */
+    color: var(--glammy-black) !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    font-family: var(--glammy-font-family, 'Inter', sans-serif) !important;
+    line-height: 1.5 !important;
+    
+    /* Effects */
+    transition: all 0.3s ease !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Focus states for better interaction */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="datetime-local"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus,
+.form-control:focus,
+.form-input:focus {
+    background-color: var(--glammy-white) !important;
+    border-color: var(--glammy-gold) !important;
+    box-shadow: 0 0 0 3px rgba(9, 9, 8, 0.2), 0 2px 6px rgba(43, 43, 43, 0.1) !important;
+    outline: none !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Hover states */
+input[type="text"]:hover:not(:focus),
+input[type="email"]:hover:not(:focus),
+input[type="password"]:hover:not(:focus),
+input[type="number"]:hover:not(:focus),
+input[type="url"]:hover:not(:focus),
+input[type="tel"]:hover:not(:focus),
+input[type="date"]:hover:not(:focus),
+input[type="time"]:hover:not(:focus),
+input[type="datetime-local"]:hover:not(:focus),
+input[type="search"]:hover:not(:focus),
+textarea:hover:not(:focus),
+select:hover:not(:focus),
+.form-control:hover:not(:focus),
+.form-input:hover:not(:focus) {
+    border-color: #D1D5DB !important;
+    background-color: #F9FAFB !important;
+}
+
+/* Textareas specific styling */
+textarea {
+    min-height: 80px !important;
+    resize: vertical !important;
+}
+
+/* Select dropdowns */
+select,
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 12px center !important;
+    background-repeat: no-repeat !important;
+    background-size: 16px 16px !important;
+    padding-right: 40px !important;
+    cursor: pointer !important;
+}
+
+/* File inputs */
+input[type="file"] {
+    background-color: #F9FAFB !important;
+    border: 2px dashed #D1D5DB !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+input[type="file"]:hover {
+    border-color: var(--glammy-gold) !important;
+    background-color: #FEF7ED !important;
+}
+
+/* Checkbox and radio inputs */
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto !important;
+    margin-right: 8px !important;
+    accent-color: var(--glammy-gold) !important;
+    transform: scale(1.2) !important;
+    cursor: pointer !important;
+}
+
+/* Form rows and field containers */
+.form-row,
+.field,
+.form-group,
+.field-box {
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Help text */
+.help,
+.helptext,
+.form-text,
+.help-block {
+    background-color: #EEF2FF !important;
+    border: 1px solid #C7D2FE !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    margin-top: 6px !important;
+    font-size: 12px !important;
+    color: #4B5563 !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+}
+
+/* Error styling */
+.errorlist,
+.form-errors,
+.field-errors {
+    background-color: #FEF2F2 !important;
+    border: 2px solid #F87171 !important;
+    color: #DC2626 !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    margin: 8px 0 !important;
+    font-weight: 600 !important;
+    list-style: none !important;
+}
+
+.errorlist li,
+.form-errors li,
+.field-errors li {
+    margin: 0 !important;
+    padding: 2px 0 !important;
+}
+
+/* Required field indicators */
+.required label::after,
+label.required::after {
+    content: " *" !important;
+    color: #DC2626 !important;
+    font-weight: 700 !important;
+}
+
+/* Placeholder text */
+::placeholder {
+    color: #9CA3AF !important;
+    opacity: 1 !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+}
+
+/* Disabled fields */
+input:disabled,
+textarea:disabled,
+select:disabled,
+.form-control:disabled {
+    background-color: #F3F4F6 !important;
+    border-color: #E5E7EB !important;
+    color: #9CA3AF !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}
+
+/* ================================
+   TABLES & DATA DISPLAY
+   ================================ */
+
+/* Table headers */
+table thead th,
+.table-header { background: var(--glammy-accent) !important; color: var(--glammy-beige) !important; font-weight: 700; }
+
+/* Table rows */
+table tbody tr:nth-child(even) { background-color: var(--glammy-cream) !important; }
+
+table tbody tr:hover { background-color: rgba(0,0,0,0.03) !important; transition: background .2s ease; }
+
+/* ================================
+   CHANGE LIST FILTER SIDEBAR (LEFT)
+   ================================ */
+
+/* Container */
+#changelist-filter,
+.change-list .filters,
+[data-component="filters"],
+.changelist-filter {
+    background: var(--glammy-beige) !important;
+    border: 1px solid rgba(0,0,0,.10) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+    padding: 20px !important;
+}
+
+/* Filter panel container backgrounds */
+#changelist-filter .bg-white,
+#changelist-filter .dark\\:bg-base-800 {
+    background: var(--glammy-beige) !important;
+}
+
+/* Group header */
+#changelist-filter h3,
+.change-list .filters h3,
+.change-list .filters h2,
+.changelist-filter h2 {
+    color: var(--glammy-accent) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    text-transform: none !important;
+    margin: 0 6px 8px !important;
+}
+
+/* Divider and spacing between groups */
+#changelist-filter h3:not(:first-child),
+.changelist-filter h2:not(:first-child),
+.change-list .filters h2:not(:first-child),
+.change-list .filters h3:not(:first-child) {
+    border-top: 1px solid rgba(0,0,0,.10) !important;
+    padding-top: 16px !important;
+    margin-top: 16px !important;
+}
+
+/* Options list */
+#changelist-filter ul,
+.change-list .filters ul,
+.changelist-filter ul { 
+    list-style: none !important; 
+    margin: 6px 0 !important; 
+    padding: 0 !important; 
+    background: var(--glammy-beige) !important;
+    border: 1px solid rgba(0,0,0,0.10) !important;
+    border-radius: 12px !important;
+}
+#changelist-filter ul li,
+.change-list .filters ul li,
+.changelist-filter ul li { 
+    margin: 6px 0 !important; 
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Option item as pill button */
+#changelist-filter li a,
+.change-list .filters ul li a,
+.changelist-filter ul li a {
+    display: block !important;
+    background: transparent !important;
+    border: 1px solid var(--glammy-accent) !important;
+    color: var(--glammy-black) !important;
+    border-radius: 9999px !important;
+    padding: 8px 12px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: background .15s ease, transform .1s ease, color .15s ease;
+    margin: 4px !important;
+}
+
+#changelist-filter li a:hover,
+.change-list .filters ul li a:hover,
+.changelist-filter ul li a:hover { 
+    background: var(--glammy-accent) !important; 
+    color: var(--glammy-beige) !important; 
+    transform: translateY(-1px); 
+}
+
+/* Selected (active) filter option */
+#changelist-filter li.font-semibold,
+#changelist-filter li.font-semibold a,
+.change-list .filters ul li.selected a,
+.changelist-filter ul li.selected a,
+.change-list .filters ul li .selected,
+.changelist-filter ul li .selected {
+    background: var(--glammy-accent) !important;
+    border-color: var(--glammy-accent) !important;
+    color: var(--glammy-beige) !important;
+}
+
+/* Override Unfold's primary colors */
+#changelist-filter .text-primary-600,
+#changelist-filter .dark\\:text-primary-500 {
+    color: var(--glammy-accent) !important;
+}
+
+/* Remove borders between items */
+#changelist-filter .border-b,
+#changelist-filter .border-r {
+    border: none !important;
+}
+
+/* Small meta texts */
+.change-list .filters .filter-choices small,
+.changelist-filter small { color: rgba(0,0,0,.55) !important; }
+
+/* Sticky filters on large screens */
+@media (min-width: 1024px) {
+  .change-list .filters,
+  [data-component="filters"],
+  .changelist-filter { position: sticky; top: 92px; width: 25%; min-width: 260px; }
+}
+
+/* ================================
+   TABLE ENHANCEMENTS (PADDING, RADIUS, SHADOW)
+   ================================ */
+.change-list .results,
+.results {
+    background: #fff0; /* transparent wrapper */
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.results table th, .results table td,
+.change-list table th, .change-list table td {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+/* Keep header colors as specified */
+.results table thead th { background: var(--glammy-accent) !important; color: var(--glammy-beige) !important; }
+
+/* Responsive stacking: sidebar above table on small screens */
+@media (max-width: 1023.98px) {
+  .change-list { display: grid; gap: 16px; }
+  .change-list .filters, .changelist-filter { width: 100% !important; position: static; }
+}
+
+/* ================================
+   SEARCH BAR STYLING
+   ================================ */
+
+/* Search bar container */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full,
+.search-bar,
+[data-component="search"] {
+    background: var(--glammy-beige) !important;
+    border: 1px solid rgba(0,0,0,0.10) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+    padding: 12px 16px !important;
+    transition: all 0.15s ease !important;
+}
+
+/* Search bar focus state */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full:focus-within,
+.search-bar:focus-within,
+[data-component="search"]:focus-within {
+    border-color: var(--glammy-accent) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 0 2px rgba(184, 159, 103, 0.2) !important;
+}
+
+/* Search button */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button,
+.search-bar button,
+[data-component="search"] button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--glammy-black) !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    transition: all 0.15s ease !important;
+}
+
+/* Search button hover state */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button:hover,
+.search-bar button:hover,
+[data-component="search"] button:hover {
+    background: rgba(0,0,0,0.04) !important;
+}
+
+/* Search icon */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button span,
+.search-bar button span,
+[data-component="search"] button span {
+    color: var(--glammy-black) !important;
+    font-size: 18px !important;
+}
+
+/* Search input field */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full input,
+.search-bar input,
+[data-component="search"] input {
+    background: transparent !important;
+    border: none !important;
+    color: var(--glammy-black) !important;
+    font-family: var(--glammy-font-family) !important;
+    font-weight: 500 !important;
+    outline: none !important;
+    padding: 8px 12px !important;
+}
+
+/* Search input placeholder */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full input::placeholder,
+.search-bar input::placeholder,
+[data-component="search"] input::placeholder {
+    color: rgba(0,0,0,0.6) !important;
+    font-weight: 400 !important;
+}
+
+/* Keyboard shortcut indicator */
+.bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full kbd,
+.search-bar kbd,
+[data-component="search"] kbd {
+    background: rgba(0,0,0,0.04) !important;
+    border: 1px solid rgba(0,0,0,0.10) !important;
+    color: var(--glammy-black) !important;
+    border-radius: 6px !important;
+    font-family: var(--glammy-font-family) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 4px 8px !important;
+}
+
+/* Dark mode overrides */
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full,
+.dark .search-bar,
+.dark [data-component="search"] {
+    background: var(--glammy-beige) !important;
+    border-color: rgba(0,0,0,0.10) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full input,
+.dark .search-bar input,
+.dark [data-component="search"] input {
+    color: var(--glammy-black) !important;
+    background: transparent !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full input::placeholder,
+.dark .search-bar input::placeholder,
+.dark [data-component="search"] input::placeholder {
+    color: rgba(0,0,0,0.6) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full button span,
+.dark .search-bar button span,
+.dark [data-component="search"] button span {
+    color: var(--glammy-black) !important;
+}
+
+.dark .bg-white.border.border-base-200.flex.flex-row.items-center.px-3.rounded-default.relative.shadow-xs.w-full kbd,
+.dark .search-bar kbd,
+.dark [data-component="search"] kbd {
+    background: rgba(0,0,0,0.04) !important;
+    border-color: rgba(0,0,0,0.10) !important;
+    color: var(--glammy-black) !important;
+}
+
+/* ================================
+   CARDS & CONTAINERS
+   ================================ */
+
+.card,
+.module,
+.widget,
+.panel,
+fieldset { background: var(--glammy-beige) !important; border: 1px solid rgba(0,0,0,.06) !important; border-radius: 16px !important; box-shadow: 0 8px 24px rgba(0,0,0,0.10) !important; }
+
+.card-header,
+.module h2,
+.widget-header,
+fieldset h2,
+.fieldset-header { background: transparent !important; color: var(--glammy-black) !important; font-weight: 800 !important; text-transform: uppercase; }
+
+/* Form fieldsets specific styling */
+fieldset.module {
+    padding: 0 !important;
+}
+
+fieldset.module .form-row {
+    padding: 15px 20px !important;
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid #F3F4F6 !important;
+}
+
+fieldset.module .form-row:last-child {
+    border-bottom: none !important;
+}
+
+/* Enhanced form containers */
+.submit-row,
+.form-actions {
+    background: linear-gradient(135deg, 
+                var(--color-primary-50) 0%, 
+                var(--color-primary-100) 100%) !important;
+    border-top: 2px solid var(--glammy-gold) !important;
+    border-radius: 0 0 12px 12px !important;
+    padding: 20px !important;
+    margin: 20px -20px -20px -20px !important;
+    text-align: center !important;
+}
+
+/* ================================
+   PAGINATION & NAVIGATION
+   ================================ */
+
+/* Pagination */
+.pagination .page-link,
+.paginator a {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--color-primary-200);
+    color: var(--glammy-gold);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.pagination .page-link:hover,
+.pagination .page-link.active,
+.paginator a:hover {
+    background-color: var(--glammy-gold);
+    color: var(--glammy-white);
+    border-color: var(--glammy-gold);
+    transform: translateY(-1px);
+}
+
+/* ================================
+   BREADCRUMBS
+   ================================ */
+
+.breadcrumb,
+.breadcrumbs {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--color-primary-200);
+    border-radius: 8px;
+    padding: 12px 16px;
+    backdrop-filter: blur(10px);
+}
+
+.breadcrumb a,
+.breadcrumbs a {
+    color: var(--glammy-gold);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover,
+.breadcrumbs a:hover {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+}
+
+/* ================================
+   SPECIAL EFFECTS
+   ================================ */
+
+/* Glitter effect for special elements */
+.glammy-glitter {
+    position: relative;
+    overflow: hidden;
+}
+
+.glammy-glitter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent, 
+                rgba(212, 175, 55, 0.3) 50%, 
+                transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Sparkle animation */
+.sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { 
+        opacity: 0.7; 
+        transform: scale(1) rotate(0deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.1) rotate(180deg); 
+    }
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+
+@media (max-width: 768px) {
+    /* Mobile background adjustments */
+    body.admin,
+    .login-page {
+        background-attachment: scroll;
+        background-size: cover;
+    }
+    
+    /* Smaller shadows and effects on mobile */
+    .card,
+    .module,
+    .sidebar {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Adjust sidebar for mobile */
+    .sidebar {
+        background: rgba(180, 149, 99, 0.98);
+    }
+}
+
+/* ================================
+   DARK MODE SUPPORT
+   ================================ */
+
+/* Minimal dark mode: accent and beige invert */
+[data-theme="dark"] { --glammy-beige: #1a1a1a; --glammy-black: #F8E9D5; }
+[data-theme="dark"] .sidebar { background: #7f6a40 !important; }
+[data-theme="dark"] .card, [data-theme="dark"] .module { background: #1a1a1a !important; color: var(--glammy-black) !important; }
+
+/* ================================
+   LOGIN PAGE SPECIFIC
+   ================================ */
+
+/* Login form container */
+.login-form,
+.auth-form {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(180, 149, 99, 0.3);
+}
+
+/* Login form header */
+.login-header,
+.auth-header {
+    background: linear-gradient(135deg, 
+                var(--glammy-gold) 0%, 
+                var(--glammy-glitter-gold) 100%) !important;
+    color: var(--glammy-white) !important;
+    border-radius: 18px 18px 0 0 !important;
+    padding: 30px !important;
+    text-align: center;
+}
+
+/* Login logo/title */
+.login-title,
+.auth-title {
+    color: var(--glammy-white) !important;
+    font-weight: 800 !important;
+    font-size: 2rem !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+}
+
+.login-title::before {
+    content: "✨ ";
+    margin-right: 10px;
+}
+
+.login-title::after {
+    content: " ✨";
+    margin-left: 10px;
+}
+
+/* Ensure RTL support */
+[dir="rtl"] .sidebar a:hover,
+[dir="rtl"] .sidebar .nav-link:hover {
+    transform: translateX(-5px);
+}
+
+[dir="rtl"] .sidebar .active,
+[dir="rtl"] .sidebar .current {
+    border-left: none;
+    border-right: 4px solid var(--glammy-glitter-gold);
+}
+
+/* ================================
+   FINAL TEXT COLOR ENFORCEMENT
+   ================================ */
+
+/* Override ALL text colors to follow the rules */
+* {
+    /* Default to black text on beige background */
+    color: var(--text-on-beige) !important;
+}
+
+/* Override for accent background elements */
+*[style*="background-color: #B89F67"],
+*[style*="background: #B89F67"],
+.bg-accent,
+.accent-background,
+.sidebar,
+.sidebar * {
+    color: var(--text-on-accent) !important;
+}
+
+/* Override for black background elements */
+*[style*="background-color: #000000"],
+*[style*="background-color: black"],
+*[style*="background: #000000"],
+*[style*="background: black"],
+.bg-black,
+.dark-background,
+.sidebar .active,
+.sidebar .current {
+    color: var(--text-on-black) !important;
+}
+
+/* Ensure all text elements inherit the correct colors */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, button, input, textarea, select,
+label, th, td, li, ul, ol, strong, em, small {
+    color: inherit !important;
+}
+
+/* ================================
+   SIDEBAR EXPANSION - SHOW ALL ITEMS
+   ================================ */
+
+/* Force sidebar to show all apps expanded */
+.sidebar {
+    overflow-y: auto !important;
+    max-height: 100vh !important;
+}
+
+/* Show all navigation items without collapsing */
+.nav-sidebar .nav-item {
+    display: block !important;
+}
+
+.nav-sidebar .nav-item .nav-link {
+    display: block !important;
+}
+
+/* Ensure all app sections are expanded */
+.nav-sidebar .nav-item.has-treeview .nav-treeview {
+    display: block !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Remove collapse functionality */
+.nav-sidebar .nav-item.has-treeview > .nav-link::after {
+    transform: rotate(90deg) !important;
+}
+
+/* Make sure all items are visible */
+.nav-sidebar .nav-treeview {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Ensure proper scrolling */
+.nav-sidebar {
+    overflow-y: auto !important;
+    height: calc(100vh - 60px) !important;
+}
+
+/* Style for better visibility */
+.nav-sidebar .nav-item .nav-link {
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.25rem !important;
+    margin: 0.125rem 0 !important;
+}
+
+.nav-sidebar .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure all models are visible */
+.nav-sidebar .nav-treeview .nav-item {
+    display: block !important;
+    margin-left: 1rem !important;
+}
+
+/* Remove any height restrictions */
+.nav-sidebar .nav-treeview {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Force all collapsible items to be expanded */
+.nav-sidebar .nav-item.has-treeview .nav-treeview {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/* Remove collapse classes */
+.nav-sidebar .nav-item.has-treeview .nav-link.collapsed {
+    background-color: transparent !important;
+}
+
+.nav-sidebar .nav-item.has-treeview .nav-link.collapsed::after {
+    transform: rotate(90deg) !important;
+}
+
+/* Ensure all navigation items are visible */
+.nav-sidebar .nav-item {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعادة جدولة الموعد - {{ website_name }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .email-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #B89F67 0%, #8B4513 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            padding: 30px;
+        }
+        .reschedule-badge {
+            display: inline-block;
+            background-color: #17a2b8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .change-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        .time-comparison {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .old-time, .new-time {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 0 10px;
+        }
+        .old-time {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .new-time {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .arrow {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            color: #17a2b8;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #495057;
+            min-width: 120px;
+        }
+        .detail-value {
+            color: #212529;
+            text-align: left;
+        }
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            background-color: #B89F67;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #8B4513;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #495057;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .important-note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>📅 إعادة جدولة الموعد</h1>
+            <p>{{ website_name }}</p>
+        </div>
+        
+        <div class="content">
+            <div class="reschedule-badge">تم تغيير الموعد</div>
+            
+            <h2>مرحباً {{ customer_name }}،</h2>
+            <p>نود إعلامك بأن موعدك قد تم تغييره. يرجى مراجعة التفاصيل الجديدة أدناه.</p>
+            
+            <div class="change-details">
+                <h3>🔄 تغيير الموعد</h3>
+                <div class="time-comparison">
+                    <div class="old-time">
+                        <h4>الموعد السابق</h4>
+                        <p><strong>{{ old_date }}</strong></p>
+                        <p><strong>{{ old_time }}</strong></p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="new-time">
+                        <h4>الموعد الجديد</h4>
+                        <p><strong>{{ new_date }}</strong></p>
+                        <p><strong>{{ new_time }}</strong></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="change-details">
+                <h3>📋 تفاصيل الحجز</h3>
+                <div class="detail-row">
+                    <span class="detail-label">رقم الحجز:</span>
+                    <span class="detail-value">#{{ booking_id }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">الخدمة:</span>
+                    <span class="detail-value">{{ service_name }}</span>
+                </div>
+            </div>
+            
+            <div class="important-note">
+                <h3>📋 ملاحظات مهمة:</h3>
+                <ul>
+                    <li>يرجى التأكد من الموعد الجديد</li>
+                    <li>في حالة عدم ملاءمة الموعد الجديد، يمكنك الاتصال بنا لإعادة الجدولة</li>
+                    <li>يرجى الحضور قبل الموعد بـ 10 دقائق</li>
+                </ul>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="#" class="btn">تأكيد الموعد الجديد</a>
+                <a href="#" class="btn btn-secondary">طلب موعد آخر</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>شكراً لاختيارك {{ website_name }}</p>
+            <p>نتطلع لرؤيتك في الموعد الجديد!</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Important: When improving or refactoring any design, do not modify, remove, or rename any API-related code or props.
+
+Specifically:
+
+Never touch useEffect, fetch, axios, or frappe.call functions.
+
+Do not rename or delete variables, endpoints, or request payloads.
+
+Do not move logic that sends or receives API data.
+
+Only change UI code: HTML structure, CSS classes, Tailwind styles, or layout elements.
+
+Keep all event handlers (e.g. onClick, onSubmit, onChange) exactly as they are.
+
+You can wrap existing elements in new containers for layout, but the data flow must remain identical.
+
+Any state variables or hooks used for API calls must remain untouched.
+
+Your changes should focus only on visual design, spacing, responsiveness, and typography.
+Never break or alter the existing API logic.
+alwaysApply: true
+---

@@ -1,0 +1,16 @@
+🗝️ GOOGLE MAPS API CONFIGURATION - ACTIVE IN PROJECT
+==================================================
+
+API Key: AIzaSyDsK-8GJ0faY4H8J-ZfidDuWrvRxhShTuE
+Map ID: 6b4b5a0a75ed9be53ad59971
+
+Configuration:
+- Library: @vis.gl/react-google-maps (Modern React wrapper)
+- Language: ar (Arabic)
+- Region: SA (Saudi Arabia)
+- Default Center: Riyadh (24.7136, 46.6753)
+
+Current Config File: src/config/maps.js
+Date Updated: September 21, 2025
+
+Status: ✅ ACTIVE - Modern Google Maps implementation using @vis.gl/react-google-maps

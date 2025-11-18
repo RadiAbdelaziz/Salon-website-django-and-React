@@ -1,0 +1,123 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'salon/img/logo-03.png' %}" alt="Logo" style="height: 40px; margin-right: 10px;">
+        {{ site_header|default:_('Django administration') }}
+    </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="icon" type="image/x-icon" href="{% static 'salon/favicon.ico' %}">
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'salon/favicon.ico' %}">
+
+<!-- Admin Notification Widget Styles -->
+<link rel="stylesheet" type="text/css" href="{% static 'salon/css/admin_notification_widget.css' %}">
+
+<style>
+/* Simple White & Black Admin Theme Overrides */
+body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+#header {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+#user-tools {
+    color: #000000 !important;
+}
+
+#user-tools a {
+    color: #000000 !important;
+}
+
+#user-tools a:hover {
+    color: #dc3545 !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+}
+
+.module table {
+    background-color: #FFFFFF !important;
+}
+
+.module table th {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+}
+
+.module table td {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background-color: #dc3545 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #dc3545 !important;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+    background-color: #218838 !important;
+    border-color: #1e7e34 !important;
+}
+
+/* Notification Widget Positioning */
+.notification-widget {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/* Ensure notification widget is visible */
+#admin-notification-widget {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 9999 !important;
+}
+
+.notification-bell {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+</style>
+{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'salon/css/simple_admin_theme.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'salon/js/simple_admin.js' %}"></script>
+
+<!-- Admin Notification Widget JavaScript -->
+<script src="{% static 'salon/js/admin_notification_widget.js' %}"></script>
+{% endblock %}

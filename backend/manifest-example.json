@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Salon Website Extension",
+  "version": "1.0",
+  "description": "Extension for salon website functionality",
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost:*/*",
+        "https://your-salon-domain.com/*"
+      ],
+      "js": ["browser-extension-fix.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  
+  "permissions": [
+    "activeTab"
+  ],
+  
+  "host_permissions": [
+    "http://localhost:*/*",
+    "https://your-salon-domain.com/*"
+  ]
+}

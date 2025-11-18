@@ -1,0 +1,21 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<div style="padding: 20px;">
+  <h2>📊 ملخص المدفوعات</h2>
+  <div style="display: flex; gap: 20px; margin-top: 20px;">
+    <div style="background: #c3f3c0; padding: 20px; border-radius: 12px;">
+      <h3>✅ مدفوعة</h3>
+      <p><b>{{ stats.count_paid }}</b> عمليات</p>
+      <p><b>{{ stats.total_paid }} ريال</b></p>
+    </div>
+    <div style="background: #ffd9d9; padding: 20px; border-radius: 12px;">
+      <h3>❌ فاشلة</h3>
+      <p><b>{{ stats.count_failed }}</b> عمليات</p>
+    </div>
+    <div style="background: #fff6cc; padding: 20px; border-radius: 12px;">
+      <h3>⏳ معلقة</h3>
+      <p><b>{{ stats.count_pending }}</b> عمليات</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

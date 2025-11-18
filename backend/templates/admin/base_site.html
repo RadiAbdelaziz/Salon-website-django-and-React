@@ -1,0 +1,478 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'salon/img/logo-03.png' %}" alt="Logo" style="height: 40px; margin-right: 10px;">
+        {{ site_header|default:_('Django administration') }}
+    </a>
+</div>
+
+<!-- Backup Navigation Icons in Branding Block -->
+<div class="backup-nav-icons" style="position: absolute; top: 10px; right: 20px; z-index: 1000; display: flex; gap: 8px;">
+    <a href="#" class="custom-nav-icon dashboard" title="Dashboard" onclick="handleNavIconClick('dashboard', this); return false;">
+        <span class="material-icons">dashboard</span>
+    </a>
+    <a href="#" class="custom-nav-icon analytics" title="Analytics" onclick="handleNavIconClick('analytics', this); return false;">
+        <span class="material-icons">analytics</span>
+    </a>
+    <a href="#" class="custom-nav-icon reports" title="Reports" onclick="handleNavIconClick('reports', this); return false;">
+        <span class="material-icons">assessment</span>
+    </a>
+    <a href="#" class="custom-nav-icon settings" title="Settings" onclick="handleNavIconClick('settings', this); return false;">
+        <span class="material-icons">settings</span>
+    </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<!-- Custom Navigation Icons Container -->
+<div class="custom-nav-icons-container" style="position: absolute; top: 10px; right: 200px; z-index: 1000;">
+    <a href="#" class="custom-nav-icon dashboard" title="Dashboard" onclick="handleNavIconClick('dashboard', this); return false;">
+        <span class="material-icons">dashboard</span>
+    </a>
+    <a href="#" class="custom-nav-icon analytics" title="Analytics" onclick="handleNavIconClick('analytics', this); return false;">
+        <span class="material-icons">analytics</span>
+    </a>
+    <a href="#" class="custom-nav-icon reports" title="Reports" onclick="handleNavIconClick('reports', this); return false;">
+        <span class="material-icons">assessment</span>
+    </a>
+    <a href="#" class="custom-nav-icon settings" title="Settings" onclick="handleNavIconClick('settings', this); return false;">
+        <span class="material-icons">settings</span>
+    </a>
+</div>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="icon" type="image/x-icon" href="{% static 'salon/favicon.ico' %}">
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'salon/favicon.ico' %}">
+
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Admin Notification Widget Styles -->
+<link rel="stylesheet" type="text/css" href="{% static 'salon/css/admin_notification_widget.css' %}">
+
+<!-- Custom Navigation Icons Styles -->
+<link rel="stylesheet" type="text/css" href="{% static 'salon/css/custom_navigation_icons.css' %}">
+
+<style>
+/* Simple White & Black Admin Theme Overrides */
+body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+#header {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+#user-tools {
+    color: #000000 !important;
+}
+
+#user-tools a {
+    color: #000000 !important;
+}
+
+#user-tools a:hover {
+    color: #dc3545 !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+}
+
+.module table {
+    background-color: #FFFFFF !important;
+}
+
+.module table th {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+}
+
+.module table td {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background-color: #dc3545 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #dc3545 !important;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+    background-color: #218838 !important;
+    border-color: #1e7e34 !important;
+}
+
+/* Notification Widget Positioning */
+.notification-widget {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+/* Ensure notification widget is visible */
+#admin-notification-widget {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 9999 !important;
+}
+
+.notification-bell {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Custom Navigation Icons Styles - Inline for guaranteed loading */
+.custom-nav-icons-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: fixed !important;
+    top: 10px !important;
+    right: 20px !important;
+    z-index: 99999 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.backup-nav-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: fixed !important;
+    top: 10px !important;
+    right: 20px !important;
+    z-index: 99998 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.fallback-nav-icons {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.custom-nav-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border: 2px solid transparent !important;
+}
+
+.custom-nav-icon:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.custom-nav-icon .material-icons {
+    font-size: 20px !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* Icon variants with gradients */
+.custom-nav-icon.dashboard {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.custom-nav-icon.dashboard:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+}
+
+.custom-nav-icon.analytics {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+.custom-nav-icon.analytics:hover {
+    background: linear-gradient(135deg, #ee82f0 0%, #f3455a 100%) !important;
+}
+
+.custom-nav-icon.reports {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+}
+
+.custom-nav-icon.reports:hover {
+    background: linear-gradient(135deg, #3dd96b 0%, #2ef7d7 100%) !important;
+}
+
+.custom-nav-icon.settings {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+}
+
+.custom-nav-icon.settings:hover {
+    background: linear-gradient(135deg, #3d8bfe 0%, #00d4fe 100%) !important;
+}
+
+/* Active state */
+.custom-nav-icon.active {
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+    border: 2px solid #ffffff !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .custom-nav-icons-container {
+        right: 150px !important;
+        gap: 4px !important;
+    }
+    
+    .custom-nav-icon {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    
+    .custom-nav-icon .material-icons {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-nav-icons-container {
+        right: 100px !important;
+        gap: 2px !important;
+    }
+    
+    .custom-nav-icon {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    .custom-nav-icon .material-icons {
+        font-size: 16px !important;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'salon/css/simple_admin_theme.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+{{ block.super }}
+<script src="{% static 'salon/js/simple_admin.js' %}"></script>
+
+<!-- Admin Notification Widget JavaScript -->
+<script src="{% static 'salon/js/admin_notification_widget.js' %}"></script>
+
+<!-- Custom Navigation Icons JavaScript -->
+<script src="{% static 'salon/js/custom_navigation_icons.js' %}"></script>
+
+<!-- Inline JavaScript for guaranteed execution -->
+<script>
+// Navigation icon click handler
+function handleNavIconClick(iconType, element) {
+    console.log('Navigation icon clicked:', iconType);
+    
+    // Remove active class from all icons
+    document.querySelectorAll('.custom-nav-icon').forEach(icon => {
+        icon.classList.remove('active');
+    });
+    
+    // Add active class to clicked icon
+    element.classList.add('active');
+    
+    // Show notification based on icon type
+    const messages = {
+        'dashboard': 'Opening Dashboard...',
+        'analytics': 'Loading Analytics...',
+        'reports': 'Generating Reports...',
+        'settings': 'Opening Settings...'
+    };
+    
+    showNavNotification(iconType.charAt(0).toUpperCase() + iconType.slice(1), messages[iconType]);
+    
+    // Store active state
+    localStorage.setItem('activeNavIcon', iconType);
+}
+
+// Show notification function
+function showNavNotification(title, message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 10000;
+        max-width: 300px;
+        animation: slideInFromRight 0.3s ease-out;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="material-icons" style="font-size: 20px;">notifications</span>
+            <div>
+                <strong style="display: block; font-size: 14px;">${title}</strong>
+                <span style="font-size: 12px; opacity: 0.9;">${message}</span>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutToRight 0.3s ease-in';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInFromRight {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideOutToRight {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Restore active state on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const activeIcon = localStorage.getItem('activeNavIcon');
+    if (activeIcon) {
+        const iconElement = document.querySelector(`.custom-nav-icon.${activeIcon}`);
+        if (iconElement) {
+            iconElement.classList.add('active');
+        }
+    }
+    
+    console.log('Custom navigation icons loaded successfully!');
+    
+    // Show alert to confirm JavaScript is working
+    setTimeout(function() {
+        alert('🎯 Navigation Icons JavaScript is working! Check the top-right corner for the colorful icons.');
+    }, 1000);
+});
+
+// Ensure icons are visible - Multiple approaches
+setTimeout(function() {
+    // Check primary container
+    const container = document.querySelector('.custom-nav-icons-container');
+    if (container) {
+        container.style.display = 'flex';
+        container.style.visibility = 'visible';
+        container.style.opacity = '1';
+        console.log('Primary navigation icons container is visible');
+    } else {
+        console.log('Primary navigation icons container not found');
+    }
+    
+    // Check backup container
+    const backupContainer = document.querySelector('.backup-nav-icons');
+    if (backupContainer) {
+        backupContainer.style.display = 'flex';
+        backupContainer.style.visibility = 'visible';
+        backupContainer.style.opacity = '1';
+        console.log('Backup navigation icons container is visible');
+    } else {
+        console.log('Backup navigation icons container not found');
+    }
+    
+    // Try to add icons to user tools as fallback
+    const userTools = document.querySelector('#user-tools');
+    if (userTools && !document.querySelector('.fallback-nav-icons')) {
+        const fallbackContainer = document.createElement('div');
+        fallbackContainer.className = 'fallback-nav-icons';
+        fallbackContainer.style.cssText = 'display: flex; gap: 8px; margin-left: 10px;';
+        
+        const icons = [
+            { type: 'dashboard', icon: 'dashboard', title: 'Dashboard' },
+            { type: 'analytics', icon: 'analytics', title: 'Analytics' },
+            { type: 'reports', icon: 'assessment', title: 'Reports' },
+            { type: 'settings', icon: 'settings', title: 'Settings' }
+        ];
+        
+        icons.forEach(config => {
+            const iconElement = document.createElement('a');
+            iconElement.href = '#';
+            iconElement.className = `custom-nav-icon ${config.type}`;
+            iconElement.title = config.title;
+            iconElement.innerHTML = `<span class="material-icons">${config.icon}</span>`;
+            iconElement.onclick = function(e) {
+                e.preventDefault();
+                handleNavIconClick(config.type, this);
+                return false;
+            };
+            fallbackContainer.appendChild(iconElement);
+        });
+        
+        userTools.insertBefore(fallbackContainer, userTools.firstChild);
+        console.log('Fallback navigation icons added to user tools');
+    }
+}, 100);
+</script>
+{% endblock %}

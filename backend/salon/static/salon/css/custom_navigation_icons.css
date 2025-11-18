@@ -1,0 +1,245 @@
+/* Custom Navigation Icons Styles */
+
+/* Material Icons Import */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* Custom Navigation Icon Base Styles */
+.custom-nav-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin-right: 8px !important;
+    text-decoration: none !important;
+    color: #495057 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.custom-nav-icon:hover {
+    background-color: #e9ecef !important;
+    border-color: #adb5bd !important;
+    color: #212529 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.custom-nav-icon:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.custom-nav-icon .material-icons {
+    font-size: 20px !important;
+    color: inherit !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Active state */
+.custom-nav-icon.active {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #ffffff !important;
+    transform: scale(1.05) !important;
+}
+
+.custom-nav-icon.active:hover {
+    background-color: #c82333 !important;
+    border-color: #bd2130 !important;
+    transform: scale(1.05) translateY(-2px) !important;
+}
+
+/* Icon variants */
+.custom-nav-icon.dashboard {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.custom-nav-icon.dashboard:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+}
+
+.custom-nav-icon.analytics {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.custom-nav-icon.analytics:hover {
+    background: linear-gradient(135deg, #ee82f0 0%, #f3455a 100%) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+}
+
+.custom-nav-icon.settings {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.custom-nav-icon.settings:hover {
+    background: linear-gradient(135deg, #3d8bfe 0%, #00d4fe 100%) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+}
+
+.custom-nav-icon.reports {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+.custom-nav-icon.reports:hover {
+    background: linear-gradient(135deg, #3dd96b 0%, #2ef7d7 100%) !important;
+    transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Navigation container positioning */
+#header .nav-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-left: auto !important;
+    flex-wrap: wrap !important;
+}
+
+/* Tooltip styles */
+.custom-nav-icon::before {
+    content: attr(title) !important;
+    position: absolute !important;
+    bottom: -35px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background-color: #212529 !important;
+    color: #ffffff !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+    z-index: 1000 !important;
+    pointer-events: none !important;
+}
+
+.custom-nav-icon:hover::before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    bottom: -30px !important;
+}
+
+/* Pulse animation for active icons */
+.custom-nav-icon.active::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translate(-50%, -50%) scale(0) !important;
+    animation: pulse 2s infinite !important;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .custom-nav-icon {
+        width: 36px !important;
+        height: 36px !important;
+        margin-right: 4px !important;
+    }
+    
+    .custom-nav-icon .material-icons {
+        font-size: 18px !important;
+    }
+    
+    #header .nav-container {
+        gap: 4px !important;
+    }
+    
+    .custom-nav-icon::before {
+        font-size: 11px !important;
+        padding: 3px 6px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-nav-icon {
+        width: 32px !important;
+        height: 32px !important;
+        margin-right: 2px !important;
+    }
+    
+    .custom-nav-icon .material-icons {
+        font-size: 16px !important;
+    }
+    
+    #header .nav-container {
+        gap: 2px !important;
+    }
+    
+    .custom-nav-icon::before {
+        display: none !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .custom-nav-icon {
+        background-color: #2d3748 !important;
+        border-color: #4a5568 !important;
+        color: #e2e8f0 !important;
+    }
+    
+    .custom-nav-icon:hover {
+        background-color: #4a5568 !important;
+        border-color: #718096 !important;
+        color: #ffffff !important;
+    }
+    
+    .custom-nav-icon::before {
+        background-color: #1a202c !important;
+        color: #e2e8f0 !important;
+    }
+}
+
+/* Animation for icon entrance */
+.custom-nav-icon {
+    animation: slideInFromRight 0.5s ease-out !important;
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Stagger animation for multiple icons */
+.custom-nav-icon:nth-child(1) { animation-delay: 0.1s !important; }
+.custom-nav-icon:nth-child(2) { animation-delay: 0.2s !important; }
+.custom-nav-icon:nth-child(3) { animation-delay: 0.3s !important; }
+.custom-nav-icon:nth-child(4) { animation-delay: 0.4s !important; }

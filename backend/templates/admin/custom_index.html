@@ -1,0 +1,161 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block content %}
+<div class="app-list">
+    <h1>{% trans 'لوحة التحكم' %}</h1>
+    
+    <!-- Payment Management Section -->
+    <div class="module payment-module">
+        <h2>💳 إدارة المدفوعات</h2>
+        <table>
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'salon:payment-dashboard' %}">لوحة تحكم المدفوعات</a>
+                </th>
+                <td>
+                    <a href="{% url 'salon:payment-dashboard' %}" class="addlink">
+                        عرض الإحصائيات والتحليلات
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'admin:salon_payment_changelist' %}">المدفوعات</a>
+                </th>
+                <td>
+                    <a href="{% url 'admin:salon_payment_changelist' %}" class="addlink">
+                        عرض جميع المدفوعات
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'admin:salon_capture_changelist' %}">عمليات الاستلام</a>
+                </th>
+                <td>
+                    <a href="{% url 'admin:salon_capture_changelist' %}" class="addlink">
+                        عرض عمليات الاستلام
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'admin:salon_refund_changelist' %}">عمليات الاسترداد</a>
+                </th>
+                <td>
+                    <a href="{% url 'admin:salon_refund_changelist' %}" class="addlink">
+                        عرض عمليات الاسترداد
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="module quick-actions-module">
+        <h2>⚡ إجراءات سريعة</h2>
+        <table>
+            <tr>
+                <th scope="row">استطلاع المدفوعات</th>
+                <td>
+                    <a href="{% url 'admin:salon_payment_changelist' %}?status__exact=CREATED" class="addlink">
+                        مدفوعات في الانتظار
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">المدفوعات المنجزة</th>
+                <td>
+                    <a href="{% url 'admin:salon_payment_changelist' %}?status__exact=CLOSED" class="addlink">
+                        مدفوعات مكتملة
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">المدفوعات المرفوضة</th>
+                <td>
+                    <a href="{% url 'admin:salon_payment_changelist' %}?status__exact=REJECTED" class="addlink">
+                        مدفوعات مرفوضة
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">المدفوعات المنتهية</th>
+                <td>
+                    <a href="{% url 'admin:salon_payment_changelist' %}?status__exact=EXPIRED" class="addlink">
+                        مدفوعات منتهية الصلاحية
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- API Endpoints Section -->
+    <div class="module api-endpoints-module">
+        <h2>🔗 نقاط الواجهة البرمجية</h2>
+        <table>
+            <tr>
+                <th scope="row">حالة الدفع</th>
+                <td>
+                    <code>GET /api/payment/status/{booking_id}/</code>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Default Django Apps -->
+    {{ block.super }}
+</div>
+
+<style>
+.payment-module, .quick-actions-module, .api-endpoints-module, .management-commands-module {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.payment-module h2, .quick-actions-module h2, .api-endpoints-module h2, .management-commands-module h2 {
+    color: #495057;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.payment-module table, .quick-actions-module table, .api-endpoints-module table, .management-commands-module table {
+    width: 100%;
+}
+
+.payment-module th, .quick-actions-module th, .api-endpoints-module th, .management-commands-module th {
+    font-weight: bold;
+    padding: 8px 0;
+    text-align: right;
+}
+
+.payment-module td, .quick-actions-module td, .api-endpoints-module td, .management-commands-module td {
+    padding: 8px 0;
+    text-align: left;
+}
+
+code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.addlink {
+    color: #28a745;
+    text-decoration: none;
+}
+
+.addlink:hover {
+    color: #1e7e34;
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

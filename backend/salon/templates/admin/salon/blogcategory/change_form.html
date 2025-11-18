@@ -1,0 +1,109 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+/* Dynamic color application for blog category edit form */
+.category-color-preview {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-left: 10px;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+}
+
+.color-preview-buttons {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.color-preview-buttons button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the color input field
+    const colorInput = document.querySelector('input[name="color"]');
+    const colorPreview = document.querySelector('.color-preview');
+    
+    if (colorInput) {
+        // Create color preview element
+        if (!colorPreview) {
+            const preview = document.createElement('div');
+            preview.className = 'category-color-preview';
+            preview.style.backgroundColor = colorInput.value;
+            colorInput.parentNode.appendChild(preview);
+        }
+        
+        // Update preview when color changes
+        colorInput.addEventListener('input', function() {
+            const color = this.value;
+            const preview = document.querySelector('.category-color-preview');
+            if (preview) {
+                preview.style.backgroundColor = color;
+            }
+            
+            // Apply color to buttons on this page
+            applyColorToButtons(color);
+        });
+        
+        // Apply initial color
+        applyColorToButtons(colorInput.value);
+    }
+    
+    function applyColorToButtons(color) {
+        if (!color) return;
+        
+        // Apply color to all buttons on the page
+        const buttons = document.querySelectorAll('.default, .button, input[type="submit"], input[type="button"]');
+        buttons.forEach(button => {
+            // Skip if it's a delete button (red)
+            if (button.classList.contains('deletelink') || button.value === 'Delete') {
+                return;
+            }
+            
+            button.style.backgroundColor = color;
+            button.style.borderColor = color;
+            button.style.color = getContrastColor(color);
+        });
+        
+        // Apply color to form header if it exists
+        const formHeader = document.querySelector('.form-row h2, .module h2');
+        if (formHeader) {
+            formHeader.style.backgroundColor = color;
+            formHeader.style.color = getContrastColor(color);
+        }
+    }
+    
+    function getContrastColor(hexColor) {
+        // Convert hex to RGB
+        const hex = hexColor.replace('#', '');
+        const r = parseInt(hex.substr(0, 2), 16);
+        const g = parseInt(hex.substr(2, 2), 16);
+        const b = parseInt(hex.substr(4, 2), 16);
+        
+        // Calculate luminance
+        const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        
+        // Return white or black based on luminance
+        return luminance > 0.5 ? '#000000' : '#ffffff';
+    }
+});
+</script>
+{% endblock %}
