@@ -579,25 +579,7 @@ const Header = ({
                         <User className="w-4 h-4 ml-2" />
                         تسجيل الدخول
                       </button>
-                      <button
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor =
-                            "var(--glamour-gold)";
-                          e.currentTarget.style.color = "white";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "transparent";
-                          e.currentTarget.style.color = "var(--warm-brown)";
-                        }}
-                        onClick={() => {
-                          onNavigate("sign-up");
-                          setIsUserMenuOpen(false);
-                        }}
-                        className="w-full text-right px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md flex items-center"
-                      >
-                        <User className="w-4 h-4 ml-2" />
-                        إنشاء حساب
-                      </button>
+                      
                     </div>
                   ) : (
                     <>
