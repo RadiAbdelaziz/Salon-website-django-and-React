@@ -395,3 +395,21 @@ def get_booking_reschedule_history(request, booking_id):
         return Response({
             'error': str(e)
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+# from . import send_whatsapp_message
+
+class TestWhatsAppView(APIView):
+    permission_classes = []  # لأي شخص يمكنه التجربة
+
+    def post(self, request):
+        phone = request.data.get("phone_number")
+        if not phone:
+            return Response({"error": "يرجى إدخال رقم الهاتف"}, status=400)
+
+        # نرسل رسالة WhatsApp
+        send_whatsapp_message(phone, "هذه رسالة اختبار من Django + Twilio ✅")
+
+        return Response({"message": "تم إرسال الرسالة بنجاح"})

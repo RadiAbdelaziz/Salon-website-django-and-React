@@ -16,7 +16,7 @@ from .base_views import (
 from .booking_views import (
     BookingListCreateView, BookingDetailView, booking_time_slots,
     availability, send_booking_emails_api, reschedule_booking,
-    get_booking_reschedule_history
+    get_booking_reschedule_history , TestWhatsAppView
 )
 
 # Blog views
@@ -28,8 +28,10 @@ from .blog_views import (
 
 # Auth views
 from .auth_views import (
-    register, login, logout, user_profile, update_profile,
-    request_password_reset, verify_password_reset_token, reset_password , verify_otp ,send_otp
+    # register, login, logout, user_profile, update_profile,
+    # request_password_reset, verify_password_reset_token, reset_password , VerifyOTPView , SendOTPView
+ logout, user_profile, update_profile , SendOTPView , VerifyOTPView
+
 )
 
 # Utility views

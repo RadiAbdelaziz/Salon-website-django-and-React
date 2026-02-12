@@ -14,81 +14,74 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [customer, setCustomer] = useState(null)
-  const [loading, setLoading] = useState(true)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  // Check if user is logged in on app start
   useEffect(() => {
     const checkAuthStatus = async () => {
-      const token = localStorage.getItem('authToken')
-      const userData = localStorage.getItem('userData')
-      const customerData = localStorage.getItem('customerData')
+      try {
+        const token = localStorage.getItem('authToken')
+        const userData = localStorage.getItem('userData')
+        const customerData = localStorage.getItem('customerData')
 
-      if (token && userData) {
-        try {
-          // Verify token is still valid by fetching profile
+        if (token && userData) {
+          // حاول جلب البروفايل من السيرفر
           const profile = await authAPI.getProfile()
           setUser(profile.user)
-          setCustomer(profile.customer)
+          setCustomer(profile.customer || null)
           setIsAuthenticated(true)
-        } catch (error) {
-          // Token is invalid, clear storage
-          localStorage.removeItem('authToken')
-          localStorage.removeItem('userData')
-          localStorage.removeItem('customerData')
+        } else {
           setUser(null)
           setCustomer(null)
           setIsAuthenticated(false)
         }
-      } else {
+      } catch (error) {
+        console.error('Auth check failed:', error)
+        // إذا حصل خطأ، نظف التوكن والبيانات
+        localStorage.removeItem('authToken')
+        localStorage.removeItem('userData')
+        localStorage.removeItem('customerData')
         setUser(null)
         setCustomer(null)
         setIsAuthenticated(false)
+      } finally {
+        setLoading(false) // هذا مهم جدًا لكي تظهر الصفحة
       }
-      setLoading(false)
     }
 
     checkAuthStatus()
   }, [])
 
-  const login = async (credentials) => {
+  const login = async (phoneData) => {
     try {
-      const response = await authAPI.login(credentials)
+      const response = await authAPI.login(phoneData) // هنا تستخدم الهاتف فقط
       
-      // Store data in localStorage
       localStorage.setItem('authToken', response.token)
       localStorage.setItem('userData', JSON.stringify(response.user))
       if (response.customer) {
         localStorage.setItem('customerData', JSON.stringify(response.customer))
       }
-      
-      // Update state
+
       setUser(response.user)
-      setCustomer(response.customer)
+      setCustomer(response.customer || null)
       setIsAuthenticated(true)
-      
       return response
     } catch (error) {
       throw error
     }
   }
 
-  const register = async (userData) => {
+  const register = async (phoneData) => {
     try {
-      const response = await authAPI.register(userData)
-      
-      // Store data in localStorage
+      const response = await authAPI.register(phoneData) // الهاتف فقط
       localStorage.setItem('authToken', response.token)
       localStorage.setItem('userData', JSON.stringify(response.user))
       if (response.customer) {
         localStorage.setItem('customerData', JSON.stringify(response.customer))
       }
-      
-      // Update state
       setUser(response.user)
-      setCustomer(response.customer)
+      setCustomer(response.customer || null)
       setIsAuthenticated(true)
-      
       return response
     } catch (error) {
       throw error
@@ -101,7 +94,6 @@ export function AuthProvider({ children }) {
     } catch (error) {
       console.error('Logout error:', error)
     } finally {
-      // Clear storage and state regardless of API call success
       localStorage.removeItem('authToken')
       localStorage.removeItem('userData')
       localStorage.removeItem('customerData')
@@ -114,22 +106,33 @@ export function AuthProvider({ children }) {
   const updateProfile = async (profileData) => {
     try {
       const response = await authAPI.updateProfile(profileData)
-      
-      // Update stored data
       localStorage.setItem('userData', JSON.stringify(response.user))
       if (response.customer) {
         localStorage.setItem('customerData', JSON.stringify(response.customer))
       }
-      
-      // Update state
       setUser(response.user)
-      setCustomer(response.customer)
-      
+      setCustomer(response.customer || null)
       return response
     } catch (error) {
       throw error
     }
   }
+const verifyPhoneOTP = async (phone, code) => {
+  try {
+    const response = await phoneAuthAPI.verifyOTP(phone, code);
+
+    localStorage.setItem('authToken', response.token);
+
+    setUser({ id: response.user_id, phone });
+    setIsAuthenticated(true);
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 
   const value = {
     user,
@@ -139,12 +142,9 @@ export function AuthProvider({ children }) {
     login,
     register,
     logout,
-    updateProfile
+    updateProfile,
+    verifyPhoneOTP
   }
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  )
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

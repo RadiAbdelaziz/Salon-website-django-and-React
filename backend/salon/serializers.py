@@ -2,7 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from rest_framework.validators import UniqueValidator
-from .models import CustomerOTP, Customer
+from .models import PhoneOTP, Customer
+
 from .views.utility_views import generate_otp
 from .views.services import send_whatsapp_message
 from .models import (
@@ -112,11 +113,12 @@ class RegisterSerializer(serializers.ModelSerializer):
             phone_number=validated_data['phone_number'],
             password=validated_data['password']
         )
-        # 🌀 إنشاء رمز التحقق
+        # 🌀 إنشاء رمز التحقق باستخدام PhoneOTP
         otp_code = generate_otp()
-        CustomerOTP.objects.create(user=user, code=otp_code)
+        PhoneOTP.objects.create(phone_number=user.phone_number, otp_code=otp_code)
         send_whatsapp_message(user.phone_number, otp_code)
         return user
+
 
 
 #  التحقق من رمز OTP
@@ -489,3 +491,13 @@ class AdminSlotAvailabilityCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("هذا الموعد موجود بالفعل لهذه الخدمة")
         
         return data
+
+
+from rest_framework import serializers
+
+class SendOTPSerializer(serializers.Serializer):
+    phone_number = serializers.CharField()
+
+class VerifyOTPSerializer(serializers.Serializer):
+    phone_number = serializers.CharField()
+    otp_code = serializers.CharField()

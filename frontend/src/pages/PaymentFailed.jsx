@@ -1,11 +1,18 @@
-export default function PaymentFailed() {
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get("code");
+import React from "react";
+import { useLocation } from "react-router-dom";
+import "./PaymentResult.css";
+
+const PaymentFailed = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const desc = params.get("desc") || "حدث خطأ أثناء الدفع.";
 
   return (
-    <div className="p-10 text-center">
-      <h1 className="text-3xl font-bold text-red-600">❌ فشلت عملية الدفع</h1>
-      <p className="mt-4">رمز الخطأ: {code}</p>
+    <div className="result-container failed">
+      <h1>❌ فشل الدفع</h1>
+      <p>{desc}</p>
     </div>
   );
-}
+};
+
+export default PaymentFailed;

@@ -30,6 +30,19 @@ class Payment(models.Model):
     raw_response = models.JSONField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    stripe_payment_intent_id = models.CharField(
+    max_length=255,
+    null=True,
+    blank=True,
+    db_index=True
+    )
+
+    stripe_charge_id = models.CharField(
+    max_length=255,
+    null=True,
+    blank=True
+    )
+
 
     def __str__(self):
         return f"{self.order_id or self.pk} | {self.amount} {self.currency} | {self.status}"

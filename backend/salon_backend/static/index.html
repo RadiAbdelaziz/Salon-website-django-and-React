@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Prevent browser extension conflicts -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data:;">
+
+    <!-- Preconnect to Google Maps for better performance -->
+    <link rel="preconnect" href="https://maps.googleapis.com">
+    <link rel="preconnect" href="https://maps.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Glammy - خدمات تجميل فاخرة</title>
+    <script type="module" crossorigin src="/assets/index-e9kMNB_Q.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BG4raVnT.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Prevent browser extension conflicts
+      (function() {
+        'use strict';
+        
+        // Override common extension methods that might cause conflicts
+        const originalQuerySelector = document.querySelector;
+        const originalQuerySelectorAll = document.querySelectorAll;
+        
+        document.querySelector = function(selector) {
+          try {
+            return originalQuerySelector.call(this, selector);
+          } catch (error) {
+            console.warn('Extension conflict prevented for querySelector:', error);
+            return null;
+          }
+        };
+        
+        document.querySelectorAll = function(selector) {
+          try {
+            return originalQuerySelectorAll.call(this, selector);
+          } catch (error) {
+            console.warn('Extension conflict prevented for querySelectorAll:', error);
+            return [];
+          }
+        };
+        
+        // Prevent extension message channel errors
+        const originalAddEventListener = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function(type, listener, options) {
+          if (type === 'message' && listener && listener.toString().includes('chrome.runtime')) {
+            console.warn('Extension message listener prevented:', type);
+            return;
+          }
+          return originalAddEventListener.call(this, type, listener, options);
+        };
+        
+        // Override chrome.runtime to prevent extension errors
+        if (typeof window.chrome === 'undefined') {
+          window.chrome = {
+            runtime: {
+              sendMessage: function() {
+                console.warn('Extension sendMessage prevented');
+                return Promise.resolve();
+              },
+              onMessage: {
+                addListener: function() {
+                  console.warn('Extension message listener prevented');
+                },
+                removeListener: function() {
+                  console.warn('Extension message listener removal prevented');
+                }
+              }
+            }
+          };
+        }
+        
+        // Add global error handler for extension errors
+        window.addEventListener('error', function(event) {
+          if (event.filename && (event.filename.includes('contentscript') || event.filename.includes('extension'))) {
+            console.warn('Browser extension error caught and handled:', event.message);
+            event.preventDefault();
+            return false;
+          }
+        });
+        
+        // Handle unhandled promise rejections from extensions
+        window.addEventListener('unhandledrejection', function(event) {
+          if (event.reason && event.reason.message && 
+              (event.reason.message.includes('message channel') || 
+               event.reason.message.includes('extension') ||
+               event.reason.message.includes('chrome.runtime'))) {
+            console.warn('Extension promise rejection caught and handled:', event.reason.message);
+            event.preventDefault();
+            return false;
+          }
+        });
+        
+        console.log('🔒 Browser extension conflict prevention initialized');
+      })();
+    </script>
+  </body>
+</html>

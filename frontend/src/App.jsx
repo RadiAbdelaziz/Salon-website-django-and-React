@@ -44,6 +44,7 @@ import FavoritesPage from "./components/FavoritesPage";
 import NewOfferPage from "./components/OffersPage";
 import OfferDetailPage from "./components/OfferDetailPage";
 import { Toaster } from "sonner";
+import StripePaymentPage from "./pages/StripePaymentPage";
 // import BookingWizard from './components/BookingWizard';
 
 function AppContent() {
@@ -291,7 +292,9 @@ function AppContent() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/stripe-payment" element={<StripePaymentPage />} />
+          {/* <Route path="/payment" element={<PaymentPage />} /> */}
+          {/* <Route path="/payments" element={<PaymentPage />} /> */}
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/payment-failed" element={<PaymentFailed />} />
           <Route path="/payment-result" element={<PaymentResult />} />

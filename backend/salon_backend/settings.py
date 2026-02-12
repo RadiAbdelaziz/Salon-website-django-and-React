@@ -36,6 +36,11 @@ HYPERPAY_BASE_URL = os.getenv("HYPERPAY_BASE_URL")
 HYPERPAY_ENTITY_ID = os.getenv("HYPERPAY_ENTITY_ID")
 HYPERPAY_ACCESS_TOKEN = os.getenv("HYPERPAY_ACCESS_TOKEN")
 
+# stripe 
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+STRIPE_CURRENCY = os.getenv("STRIPE_CURRENCY", "sar")
+
 # 🔹 إعداد كائن HYPERPAY حتى يتعرف عليه الكود
 HYPERPAY = {
     "BASE_URL": HYPERPAY_BASE_URL,
@@ -77,7 +82,7 @@ TWILIO_WHATSAPP_NUMBER = os.getenv('TWILIO_WHATSAPP_NUMBER')
 SECRET_KEY = 'django-insecure-n)pk!1p!z1m)ub=yi!4z$uz%8_)plk-#_r&twy-&v4ftd1_8i8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '::1', 'testserver', '*']
 

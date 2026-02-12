@@ -1,0 +1,33 @@
+.result-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.result-container.success {
+  background: #f0fff4;
+  color: #2f855a;
+}
+
+.result-container.failed {
+  background: #fff5f5;
+  color: #e53e3e;
+}
+
+.result-container h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.result-container p {
+  font-size: 16px;
+}

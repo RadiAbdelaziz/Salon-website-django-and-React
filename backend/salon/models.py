@@ -13,6 +13,33 @@ import random
 import string
 
 
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="المستخدم")
+
+    name = models.CharField(max_length=100, null=True, blank=True, verbose_name="الاسم")
+    email = models.EmailField(null=True, blank=True, verbose_name="البريد الإلكتروني")
+
+    phone = models.CharField(max_length=20, unique=True, verbose_name="رقم الهاتف")
+    is_phone_verified = models.BooleanField(default=False, verbose_name="تم التحقق من الهاتف")
+
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name="تاريخ الميلاد")
+    is_active = models.BooleanField(default=True, verbose_name="نشط")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "عميل"
+        verbose_name_plural = "العملاء"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.phone}"
+
+
+
+
+
 class Category(models.Model):
     """Service categories like hair care, makeup, skincare, etc."""
     name = models.CharField(max_length=100, verbose_name="اسم الفئة")
@@ -177,42 +204,43 @@ class Staff(models.Model):
     def get_days_off(self):
         return self.dayoff_set.all()
 
-class Customer(models.Model):
-    """Customer information"""
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name="المستخدم")
-    name = models.CharField(max_length=100, verbose_name="الاسم")
-    email = models.EmailField(verbose_name="البريد الإلكتروني")
-    is_phone_verified = models.BooleanField(default=False, verbose_name="تم التحقق من الهاتف")
-    phone = models.CharField(max_length=20, verbose_name="رقم الهاتف")
-    date_of_birth = models.DateField(blank=True, null=True, verbose_name="تاريخ الميلاد")
-    is_active = models.BooleanField(default=True, verbose_name="نشط")
+from django.db import models
+from django.utils import timezone
+from datetime import timedelta
+# from .models import Customer  # تأكد من المسار الصحيح لموديل Customer
+
+class PhoneOTP(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE  , null = True , blank = True)
+    otp_code = models.CharField(max_length=6)
+    is_used = models.BooleanField(default=False)
+    attempts = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    expires_at = models.DateTimeField()
 
-    class Meta:
-        verbose_name = "عميل"
-        verbose_name_plural = "العملاء"
-        ordering = ['-created_at']
+    def save(self, *args, **kwargs):
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timedelta(minutes=5)
+        super().save(*args, **kwargs)
 
-    def __str__(self):
-        return f"{self.name} ({self.email})"
+    def is_expired(self):
+        return timezone.now() > self.expires_at
 
 
-class CustomerOTP(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name="العميل")
-    code = models.CharField(max_length=6, verbose_name="كود التحقق")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الإنشاء")
+# class CustomerOTP(models.Model):
+#     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name="العميل")
+#     code = models.CharField(max_length=6, verbose_name="كود التحقق")
+#     created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاريخ الإنشاء")
 
-    def is_valid(self):
-        """التحقق من صلاحية الكود لمدة 5 دقائق"""
-        return timezone.now() < self.created_at + timedelta(minutes=5)
+#     def is_valid(self):
+#         """التحقق من صلاحية الكود لمدة 5 دقائق"""
+#         return timezone.now() < self.created_at + timedelta(minutes=5)
 
-    def __str__(self):
-        return f"{self.customer.phone} - {self.code}"
+#     def __str__(self):
+#         return f"{self.customer.phone} - {self.code}"
 
 class Address(models.Model):
     """Customer addresses"""
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='addresses', verbose_name="العميل")
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE  , null = True , blank = True)
     title = models.CharField(max_length=50, verbose_name="عنوان العنوان")
     address = models.TextField(verbose_name="العنوان التفصيلي")
     latitude = models.DecimalField(max_digits=10, decimal_places=7, blank=True, null=True, verbose_name="خط العرض")
@@ -283,7 +311,7 @@ class Booking(models.Model):
         ('cash', 'نقدي'),
     ]
     
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='bookings', verbose_name="العميل")
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE , null = True , blank = True)
     service = models.ForeignKey(Service, on_delete=models.CASCADE, verbose_name="الخدمة")
     staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="الموظف")
     address = models.ForeignKey(Address, on_delete=models.CASCADE, verbose_name="العنوان")
@@ -621,7 +649,7 @@ class AppointmentRequest(models.Model):
     )
     service = models.ForeignKey(Service, on_delete=models.CASCADE, verbose_name=_("Service"))
     staff = models.ForeignKey(Staff, on_delete=models.SET_NULL, null=True, verbose_name=_("Staff Member"))
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name=_("Customer"))
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE  , null = True , blank = True)
     payment_type = models.CharField(
         max_length=4,
         choices=PAYMENT_TYPES,
@@ -1231,7 +1259,7 @@ class Notification(models.Model):
     
     # Related objects
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE, null=True, blank=True, related_name='notifications', verbose_name="الحجز")
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True, related_name='notifications', verbose_name="العميل")
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE  , null = True , blank = True)
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE, null=True, blank=True, related_name='notifications', verbose_name="الموظف")
     
     # Notification status
@@ -1380,3 +1408,22 @@ class AdminSlotAvailability(models.Model):
 
 
 
+from django.db import models
+from django.utils import timezone
+from datetime import timedelta
+
+class PhoneOTP(models.Model):
+    phone_number = models.CharField(max_length=20)
+    otp_code = models.CharField(max_length=6)
+    is_used = models.BooleanField(default=False)
+    attempts = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timedelta(minutes=5)
+        super().save(*args, **kwargs)
+
+    def is_expired(self):
+        return timezone.now() > self.expires_at

@@ -1,134 +1,159 @@
-import { useState } from 'react'
-import { useAuth } from '../contexts/AuthContext'
-import { ArrowLeft } from 'lucide-react'
+import { useState } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import { ArrowLeft } from 'lucide-react';
+import { authAPI } from '../services/api';
 
-export default function SignInPage({ onBack, onLoginSuccess, onSwitchToSignup }) {
-  const { login } = useAuth()
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+export default function SignInPage({ onBack, onLoginSuccess }) {
+  const [step, setStep] = useState('phone'); // phone | otp
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-    setError('')
-  }
+  // إرسال OTP
+  const handleSendOtp = async (e) => {
+    e.preventDefault();
+    setError('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+    if (!phone) {
+      setError('يرجى إدخال رقم الهاتف');
+      return;
+    }
 
     try {
-      const response = await login(formData)
-      onLoginSuccess(response)
+      setLoading(true);
+
+      const cleanPhone = phone.replace(/\s/g, '');
+      console.log("Sending OTP to:", cleanPhone);
+
+      await authAPI.sendOtp({ phone_number: cleanPhone });
+      setStep('otp');
     } catch (err) {
-      setError(err.message || 'حدث خطأ أثناء تسجيل الدخول')
+      setError(err.message || 'فشل إرسال رمز التحقق');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
+
+  // التحقق من OTP
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    if (!otp) {
+      setError('يرجى إدخال رمز التحقق');
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const cleanPhone = phone.replace(/\s/g, '');
+
+      const response = await authAPI.verifyOtp({
+        phone_number: cleanPhone,
+        otp_code: otp,
+      });
+
+      // حفظ التوكن
+      if (response?.token) {
+        localStorage.setItem('authToken', response.token);
+      }
+
+      // نجاح الدخول
+      onLoginSuccess(response);
+
+    } catch (err) {
+      setError(err.message || 'رمز التحقق غير صحيح');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-no-repeat bg-fixed bg-center bg-cover
-" style={{  backgroundImage: "url('/BEAUTY SALON.jpeg')" }}>
-      <div className="flex min-h-screen justify-center">
-        {/* Left Side - Full Width Image */}
-       
+    <div
+      className="min-h-screen flex items-center justify-center bg-no-repeat bg-fixed bg-center bg-cover"
+      style={{ backgroundImage: "url('/BEAUTY SALON.jpeg')" }}
+    >
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-warm-brown mb-2">
+            {step === 'phone' ? 'مرحباً بك' : 'رمز التحقق'}
+          </h1>
+          <p className="text-medium-beige text-sm">
+            {step === 'phone'
+              ? 'أدخل رقم هاتفك'
+              : 'أدخل الرمز المرسل إلى هاتفك'}
+          </p>
+        </div>
 
-        {/* Right Side - Form */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
-          <div className="w-full max-w-md">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold text-warm-brown mb-3">
-                  مرحباً بعودتك
-                </h1>
-                <p className="text-medium-beige text-sm leading-relaxed">
-                  سجل دخولك للوصول إلى حسابك
-                </p>
-              </div>
-          
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-                      {error}
-                    </div>
-                  )}
-                  
-                  <div>
-                    <label htmlFor="username" className="block text-sm font-medium text-warm-brown mb-2">
-                      اسم المستخدم
-                    </label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      value={formData.username}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-silken-dune rounded-lg focus:ring-2 focus:ring-salon-gold focus:border-salon-gold transition-colors text-sm"
-                      placeholder="اسم المستخدم"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="password" className="block text-sm font-medium text-warm-brown mb-2">
-                      كلمة المرور
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-silken-dune rounded-lg focus:ring-2 focus:ring-salon-gold focus:border-salon-gold transition-colors text-sm"
-                      placeholder="كلمة المرور"
-                    />
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-gradient-to-r from-salon-gold to-glamour-gold-dark text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                  >
-                    {loading ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        جاري تسجيل الدخول...
-                      </div>
-                    ) : (
-                      'تسجيل الدخول'
-                    )}
-                  </button>
-                </form>
-          
-              <div className="text-center mt-6 space-y-3">
-                <button
-                  onClick={onSwitchToSignup}
-                  className="text-salon-gold hover:text-glamour-gold-dark transition-colors duration-200 text-sm font-medium"
-                >
-                  ليس لديك حساب؟ إنشاء حساب جديد
-                </button>
-                
-                <div className="border-t border-silken-dune pt-4">
-                  <button
-                    onClick={onBack}
-                    className="text-medium-beige hover:text-warm-brown transition-colors duration-200 text-sm font-medium flex items-center justify-center mx-auto"
-                  >
-                    <ArrowLeft className="w-4 h-4 ml-2" />
-                    العودة للصفحة الرئيسية
-                  </button>
-                </div>
-              </div>
-            </div>
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm mb-4">
+            {error}
           </div>
+        )}
+
+        {step === 'phone' && (
+          <form onSubmit={handleSendOtp} className="space-y-4">
+            <PhoneInput
+              country="sa"
+              value={phone}
+              onChange={(value) => setPhone("+" + value)}
+              inputStyle={{
+                width: '100%',
+                direction: 'ltr',
+                fontSize: '16px',
+                paddingLeft: '60px',
+              }}
+              buttonStyle={{
+                border: 'none',
+              }}
+              containerClass="w-full"
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-salon-gold to-glamour-gold-dark text-white font-semibold py-4 rounded-xl"
+            >
+              {loading ? 'جاري الإرسال...' : 'إرسال رمز التحقق'}
+            </button>
+          </form>
+        )}
+
+        {step === 'otp' && (
+          <form onSubmit={handleVerifyOtp} className="space-y-4">
+            <input
+              type="text"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              className="w-full px-4 py-3 border rounded-lg text-center tracking-widest"
+              placeholder="••••••"
+              dir="ltr"
+              maxLength={6}
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-salon-gold to-glamour-gold-dark text-white font-semibold py-4 rounded-xl"
+            >
+              {loading ? 'جاري التحقق...' : 'تأكيد'}
+            </button>
+          </form>
+        )}
+
+        <div className="text-center mt-6 border-t pt-4">
+          <button
+            onClick={onBack}
+            className="text-sm flex items-center justify-center mx-auto"
+          >
+            <ArrowLeft className="w-4 h-4 ml-2" />
+            العودة
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }

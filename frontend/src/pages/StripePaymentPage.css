@@ -1,0 +1,66 @@
+.stripe-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f7fafc;
+  padding: 20px;
+}
+
+.stripe-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stripe-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #2d3748;
+}
+
+.stripe-subtitle {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #718096;
+}
+
+.stripe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-element-wrapper {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #f9fafb;
+}
+
+.stripe-button {
+  background-color: #667eea;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.stripe-button:hover {
+  background-color: #5a67d8;
+}
+
+.stripe-message {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #2f855a; /* أخضر للنجاح */
+}

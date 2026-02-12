@@ -236,25 +236,43 @@ export const dashboardAPI = {
   getStats: () => apiRequest('/dashboard-stats/'),
 };
 
-// Authentication API
+// Authentication API (OTP based)
 export const authAPI = {
-  register: (userData) => apiRequest('/auth/register/', {
-    method: 'POST',
-    body: JSON.stringify(userData),
-  }),
-  login: (credentials) => apiRequest('/auth/login/', {
-    method: 'POST',
-    body: JSON.stringify(credentials),
-  }),
-  logout: () => apiRequest('/auth/logout/', {
-    method: 'POST',
-  }),
+  // 🔐 إرسال رمز التحقق
+  sendOtp: (data) =>
+    apiRequest('/auth/send-otp/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  // ✅ التحقق من الرمز
+  verifyOtp: (data) =>
+    apiRequest('/auth/verify-otp/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
+  // ===== الموجود سابقًا =====
+  login: (credentials) =>
+    apiRequest('/auth/login/', {
+      method: 'POST',
+      body: JSON.stringify(credentials),
+    }),
+
+  logout: () =>
+    apiRequest('/auth/logout/', {
+      method: 'POST',
+    }),
+
   getProfile: () => apiRequest('/auth/profile/'),
-  updateProfile: (profileData) => apiRequest('/auth/update-profile/', {
-    method: 'PUT',
-    body: JSON.stringify(profileData),
-  }),
+
+  updateProfile: (profileData) =>
+    apiRequest('/auth/update-profile/', {
+      method: 'PUT',
+      body: JSON.stringify(profileData),
+    }),
 };
+
 
 // Configuration API
 export const configAPI = {
@@ -339,20 +357,20 @@ export const rescheduleHistoryAPI = {
 };
 
 // Password Reset API
-export const passwordResetAPI = {
-  requestReset: (email) => apiRequest('/password-reset/request/', {
-    method: 'POST',
-    body: JSON.stringify({ email }),
-  }),
-  verifyToken: (token) => apiRequest('/password-reset/verify/', {
-    method: 'POST',
-    body: JSON.stringify({ token }),
-  }),
-  resetPassword: (token, newPassword) => apiRequest('/password-reset/reset/', {
-    method: 'POST',
-    body: JSON.stringify({ token, new_password: newPassword }),
-  }),
-};
+// export const passwordResetAPI = {
+//   requestReset: (email) => apiRequest('/password-reset/request/', {
+//     method: 'POST',
+//     body: JSON.stringify({ email }),
+//   }),
+//   verifyToken: (token) => apiRequest('/password-reset/verify/', {
+//     method: 'POST',
+//     body: JSON.stringify({ token }),
+//   }),
+//   resetPassword: (token, newPassword) => apiRequest('/password-reset/reset/', {
+//     method: 'POST',
+//     body: JSON.stringify({ token, new_password: newPassword }),
+//   }),
+// };
 
 
 // Blog API
@@ -556,7 +574,7 @@ export default {
   daysOffAPI,
   appointmentRequestsAPI,
   rescheduleHistoryAPI,
-  passwordResetAPI,
+  // passwordResetAPI,
   blogAPI,
   transformers
 };

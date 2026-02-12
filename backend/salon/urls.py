@@ -4,6 +4,7 @@ from . import export_views
 from . import notification_views
 # from . import admin_slot_views
 from .views import booking_views
+# from .views import WhatsAppTestView
 
 app_name = 'salon'
 
@@ -46,12 +47,12 @@ urlpatterns = [
     
     # Authentication
 
-    path('auth/register/', views.register, name='register'),
-    path('auth/verify-otp/', views.verify_otp, name='verify_otp') ,
-    path('auth/send-otp/', views.send_otp),
+    # path('auth/register/', views.register, name='register'),
+    # path('auth/verify-otp/', views.verify_otp, name='verify_otp') ,
+    # path('auth/send-otp/', views.send_otp),
 
     # path('auth/register/', views.register, name='register'),
-    path('auth/login/', views.login, name='login'),
+    # path('auth/login/', views.login, name='login'),
     path('auth/logout/', views.logout, name='logout'),
     path('auth/profile/', views.user_profile, name='user-profile'),
     path('auth/update-profile/', views.update_profile, name='update-profile'),
@@ -73,9 +74,21 @@ urlpatterns = [
     path('appointment-requests/<int:pk>/', views.AppointmentRequestDetailView.as_view(), name='appointment-requests-detail'),
     path('appointment-requests/<int:pk>/reschedule/', views.reschedule_appointment_request, name='reschedule-appointment-request'),
     path('reschedule-history/', views.RescheduleHistoryListView.as_view(), name='reschedule-history-list'),
-    path('password-reset/request/', views.request_password_reset, name='request-password-reset'),
-    path('password-reset/verify/', views.verify_password_reset_token, name='verify-password-reset-token'),
-    path('password-reset/reset/', views.reset_password, name='reset-password'),
+    # path('password-reset/request/', views.request_password_reset, name='request-password-reset'),
+    # path('password-reset/verify/', views.verify_password_reset_token, name='verify-password-reset-token'),
+    # path('password-reset/reset/', views.reset_password, name='reset-password'),
+
+    # otp 
+    # path("auth/send-otp/", views.SendOTPView.as_view()),
+    # path("auth/verify-otp/", views.VerifyOTPView.as_view()),
+    path('auth/send-otp/', views.SendOTPView.as_view(), name='send_otp'),
+    path('auth/verify-otp/', views.VerifyOTPView.as_view(), name='verify_otp'),
+    path('auth/logout/', views.logout, name='logout'),
+    path('auth/profile/', views.user_profile, name='user_profile'),
+    path('auth/profile/update/', views.update_profile, name='update_profile'),
+
+    
+    path("test-whatsapp/", views.TestWhatsAppView.as_view(), name="test-whatsapp"),
     
     # Placeholder images
     path('placeholder/<int:width>/<int:height>/', views.placeholder_image, name='placeholder-image'),
@@ -125,7 +138,9 @@ urlpatterns = [
     path('admin/notifications/mark-all-read/', notification_views.mark_all_notifications_read_api, name='mark-all-notifications-read-api'),
     path('admin/notifications/count/', notification_views.notification_count_api, name='notification-count-api'),
     
-    
+    # test
+    #  path("test-whatsapp/", WhatsAppTestView.as_view()),
+
     # Admin Slot Availability Management
     # path('admin-slots/', admin_slot_views.AdminSlotAvailabilityListView.as_view(), name='admin-slots-list'),
     # path('admin-slots/<int:pk>/', admin_slot_views.AdminSlotAvailabilityDetailView.as_view(), name='admin-slots-detail'),
